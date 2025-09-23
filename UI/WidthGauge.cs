@@ -10,13 +10,17 @@ namespace TrueNASLocker.UI
     {
         public WidthGauge()
         {
+            this.ParentChanged += OnParentChange;
+        }
+
+        private void OnParentChange(object? sender, EventArgs e)
+        {
             if (this.Parent == null)
             {
                 return;
             }
 
             this.Parent.Resize += OnParentResize;
-            this.Width = Parent.Width - Parent.Margin.Left - Parent.Margin.Right;
         }
 
         private void OnParentResize(object? sender, EventArgs e)

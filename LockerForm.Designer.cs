@@ -338,7 +338,7 @@
             loginBox1.Location = new Point(265, 344);
             loginBox1.Margin = new Padding(0);
             loginBox1.Name = "loginBox1";
-            loginBox1.Size = new Size(156, 261);
+            loginBox1.Size = new Size(250, 261);
             loginBox1.TabIndex = 10;
             // 
             // LockerForm
