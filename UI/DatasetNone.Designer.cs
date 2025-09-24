@@ -1,6 +1,6 @@
 ﻿namespace TrueNASLocker.UI
 {
-    partial class DatasetUnselectedBox
+    partial class DatasetNone
     {
         /// <summary> 
         /// Required designer variable.
@@ -44,7 +44,7 @@
             _groupBox.Size = new Size(115, 206);
             _groupBox.TabIndex = 10;
             _groupBox.TabStop = false;
-            _groupBox.Text = "select dataset";
+            _groupBox.Text = "Info";
             // 
             // _tableLayoutPanel
             // 

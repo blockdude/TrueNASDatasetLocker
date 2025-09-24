@@ -1,6 +1,6 @@
 ﻿namespace TrueNASLocker.UI
 {
-    partial class LoginBox
+    partial class DatasetUnlock
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,150 +31,100 @@
             _groupBox = new GroupBox();
             _flowLayout = new FlowLayoutPanelEx();
             _widthGauge = new WidthGauge();
-            _hostLabel = new Label();
-            _hostTextBox = new TextBox();
-            _userLabel = new Label();
-            _userTextBox = new TextBox();
             _passwordLabel = new Label();
             _passwordTextBox = new TextBox();
+            _unlockButton = new Button();
             _showPasswordCheckBox = new CheckBox();
-            _loginButton = new Button();
             _groupBox.SuspendLayout();
             _flowLayout.SuspendLayout();
             SuspendLayout();
             // 
             // _groupBox
             // 
-            _groupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             _groupBox.Controls.Add(_flowLayout);
+            _groupBox.Dock = DockStyle.Fill;
             _groupBox.Location = new Point(0, 0);
             _groupBox.Name = "_groupBox";
-            _groupBox.Size = new Size(159, 250);
-            _groupBox.TabIndex = 0;
+            _groupBox.Size = new Size(159, 231);
+            _groupBox.TabIndex = 1;
             _groupBox.TabStop = false;
-            _groupBox.Text = "Login";
+            _groupBox.Text = "Dataset Unlock";
             // 
             // _flowLayout
             // 
             _flowLayout.CenterHorizontal = false;
             _flowLayout.CenterVertical = true;
             _flowLayout.Controls.Add(_widthGauge);
-            _flowLayout.Controls.Add(_hostLabel);
-            _flowLayout.Controls.Add(_hostTextBox);
-            _flowLayout.Controls.Add(_userLabel);
-            _flowLayout.Controls.Add(_userTextBox);
             _flowLayout.Controls.Add(_passwordLabel);
             _flowLayout.Controls.Add(_passwordTextBox);
+            _flowLayout.Controls.Add(_unlockButton);
             _flowLayout.Controls.Add(_showPasswordCheckBox);
-            _flowLayout.Controls.Add(_loginButton);
             _flowLayout.Dock = DockStyle.Fill;
             _flowLayout.FlowDirection = FlowDirection.TopDown;
             _flowLayout.Location = new Point(3, 19);
             _flowLayout.Name = "_flowLayout";
-            _flowLayout.Padding = new Padding(0, 21, 0, 0);
-            _flowLayout.Size = new Size(153, 228);
-            _flowLayout.TabIndex = 6;
+            _flowLayout.Padding = new Padding(0, 55, 0, 0);
+            _flowLayout.Size = new Size(153, 209);
+            _flowLayout.TabIndex = 7;
             // 
             // _widthGauge
             // 
-            _widthGauge.Anchor = AnchorStyles.Top;
-            _widthGauge.Location = new Point(0, 21);
+            _widthGauge.Location = new Point(0, 55);
             _widthGauge.Margin = new Padding(0);
             _widthGauge.Name = "_widthGauge";
             _widthGauge.Size = new Size(153, 0);
-            _widthGauge.TabIndex = 14;
-            // 
-            // _hostLabel
-            // 
-            _hostLabel.AutoSize = true;
-            _hostLabel.Dock = DockStyle.Fill;
-            _hostLabel.Location = new Point(3, 21);
-            _hostLabel.Name = "_hostLabel";
-            _hostLabel.Size = new Size(147, 15);
-            _hostLabel.TabIndex = 6;
-            _hostLabel.Text = "Host";
-            _hostLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // _hostTextBox
-            // 
-            _hostTextBox.Dock = DockStyle.Fill;
-            _hostTextBox.Location = new Point(3, 39);
-            _hostTextBox.Name = "_hostTextBox";
-            _hostTextBox.Size = new Size(147, 23);
-            _hostTextBox.TabIndex = 7;
-            _hostTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // _userLabel
-            // 
-            _userLabel.AutoSize = true;
-            _userLabel.Dock = DockStyle.Fill;
-            _userLabel.Location = new Point(3, 65);
-            _userLabel.Name = "_userLabel";
-            _userLabel.Size = new Size(147, 15);
-            _userLabel.TabIndex = 8;
-            _userLabel.Text = "Username";
-            _userLabel.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // _userTextBox
-            // 
-            _userTextBox.Dock = DockStyle.Fill;
-            _userTextBox.Location = new Point(3, 83);
-            _userTextBox.Name = "_userTextBox";
-            _userTextBox.Size = new Size(147, 23);
-            _userTextBox.TabIndex = 10;
-            _userTextBox.TextAlign = HorizontalAlignment.Center;
+            _widthGauge.TabIndex = 7;
+            _widthGauge.Text = "widthGauge1";
             // 
             // _passwordLabel
             // 
             _passwordLabel.AutoSize = true;
             _passwordLabel.Dock = DockStyle.Fill;
-            _passwordLabel.Location = new Point(3, 109);
+            _passwordLabel.Location = new Point(3, 55);
             _passwordLabel.Name = "_passwordLabel";
             _passwordLabel.Size = new Size(147, 15);
-            _passwordLabel.TabIndex = 9;
+            _passwordLabel.TabIndex = 6;
             _passwordLabel.Text = "Password";
             _passwordLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // _passwordTextBox
             // 
             _passwordTextBox.Dock = DockStyle.Fill;
-            _passwordTextBox.Location = new Point(3, 127);
+            _passwordTextBox.Location = new Point(3, 73);
             _passwordTextBox.Name = "_passwordTextBox";
-            _passwordTextBox.PasswordChar = '*';
             _passwordTextBox.Size = new Size(147, 23);
-            _passwordTextBox.TabIndex = 11;
+            _passwordTextBox.TabIndex = 4;
+            _passwordTextBox.Tag = "";
             _passwordTextBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // _unlockButton
+            // 
+            _unlockButton.Dock = DockStyle.Fill;
+            _unlockButton.Location = new Point(3, 102);
+            _unlockButton.Name = "_unlockButton";
+            _unlockButton.Size = new Size(147, 23);
+            _unlockButton.TabIndex = 1;
+            _unlockButton.Text = "Unlock";
+            _unlockButton.UseVisualStyleBackColor = true;
             // 
             // _showPasswordCheckBox
             // 
             _showPasswordCheckBox.Anchor = AnchorStyles.Top;
             _showPasswordCheckBox.AutoSize = true;
-            _showPasswordCheckBox.Location = new Point(22, 156);
+            _showPasswordCheckBox.Location = new Point(23, 131);
             _showPasswordCheckBox.Name = "_showPasswordCheckBox";
-            _showPasswordCheckBox.Size = new Size(108, 19);
-            _showPasswordCheckBox.TabIndex = 12;
-            _showPasswordCheckBox.Text = "Show Password";
-            _showPasswordCheckBox.TextAlign = ContentAlignment.MiddleCenter;
+            _showPasswordCheckBox.Size = new Size(107, 19);
+            _showPasswordCheckBox.TabIndex = 5;
+            _showPasswordCheckBox.Text = "show password";
             _showPasswordCheckBox.UseVisualStyleBackColor = true;
             // 
-            // _loginButton
-            // 
-            _loginButton.Dock = DockStyle.Fill;
-            _loginButton.Location = new Point(3, 181);
-            _loginButton.Name = "_loginButton";
-            _loginButton.Size = new Size(147, 23);
-            _loginButton.TabIndex = 13;
-            _loginButton.Text = "Login";
-            _loginButton.UseVisualStyleBackColor = true;
-            // 
-            // LoginBox
+            // DatasetUnlock
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(_groupBox);
-            Margin = new Padding(0);
-            Name = "LoginBox";
-            Size = new Size(159, 250);
+            Name = "DatasetUnlock";
+            Size = new Size(159, 231);
             _groupBox.ResumeLayout(false);
             _flowLayout.ResumeLayout(false);
             _flowLayout.PerformLayout();
@@ -186,13 +136,9 @@
         private GroupBox _groupBox;
         private FlowLayoutPanelEx _flowLayout;
         private WidthGauge _widthGauge;
-        private Label _hostLabel;
-        private TextBox _hostTextBox;
-        private Label _userLabel;
-        private TextBox _userTextBox;
         private Label _passwordLabel;
         private TextBox _passwordTextBox;
+        private Button _unlockButton;
         private CheckBox _showPasswordCheckBox;
-        private Button _loginButton;
     }
 }

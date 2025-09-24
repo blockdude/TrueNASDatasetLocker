@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TrueNASLocker.UI
 {
-    public partial class DatasetUnselectedBox : UserControl
+    public partial class DatasetEdit : UserControl
     {
-        public DatasetUnselectedBox()
+        public DatasetEdit()
         {
             InitializeComponent();
         }

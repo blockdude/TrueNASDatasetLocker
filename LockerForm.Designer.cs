@@ -33,16 +33,17 @@
             // 
             // datasetViewer1
             // 
-            datasetViewer1.Location = new Point(76, 42);
+            datasetViewer1.Dock = DockStyle.Fill;
+            datasetViewer1.Location = new Point(0, 0);
             datasetViewer1.Name = "datasetViewer1";
-            datasetViewer1.Size = new Size(776, 426);
-            datasetViewer1.TabIndex = 11;
+            datasetViewer1.Size = new Size(263, 378);
+            datasetViewer1.TabIndex = 0;
             // 
             // LockerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(988, 587);
+            ClientSize = new Size(263, 378);
             Controls.Add(datasetViewer1);
             Name = "LockerForm";
             Text = "TrueNAS Locker";

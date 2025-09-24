@@ -29,73 +29,71 @@
         private void InitializeComponent()
         {
             ListViewItem listViewItem6 = new ListViewItem("jam");
-            ListViewItem listViewItem7 = new ListViewItem("cas");
-            ListViewItem listViewItem8 = new ListViewItem("drv");
-            ListViewItem listViewItem9 = new ListViewItem("12341");
-            ListViewItem listViewItem10 = new ListViewItem("123414");
+            ListViewItem listViewItem7 = new ListViewItem("jam/cas");
+            ListViewItem listViewItem8 = new ListViewItem("jam/drv");
+            ListViewItem listViewItem9 = new ListViewItem("cat");
+            ListViewItem listViewItem10 = new ListViewItem("cng");
             dataset_form = new Panel();
-            userAccountBox1 = new UserAccountBox();
-            listView1 = new ListView();
+            _mainSplitter = new SplitContainer();
+            _datasetListView = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
-            pwdchg_panel = new GroupBox();
-            checkBox4 = new CheckBox();
-            label6 = new Label();
-            label5 = new Label();
-            textBox3 = new TextBox();
-            button4 = new Button();
-            button2 = new Button();
-            textBox2 = new TextBox();
-            lock_panel = new GroupBox();
-            button5 = new Button();
-            checkBox2 = new CheckBox();
-            button3 = new Button();
-            unlock_panel = new GroupBox();
-            label4 = new Label();
-            checkBox1 = new CheckBox();
-            unlock_button = new Button();
-            password_textbox = new TextBox();
-            datasetUnselectedBox1 = new DatasetUnselectedBox();
+            _infoSplitter = new SplitContainer();
+            _editBox = new DatasetEdit();
+            _infoBox = new DatasetNone();
+            _changePasswordBox = new DatasetPasswordChange();
+            _unlockBox = new DatasetUnlock();
+            _userBox = new UserAccountBox();
             dataset_form.SuspendLayout();
-            pwdchg_panel.SuspendLayout();
-            lock_panel.SuspendLayout();
-            unlock_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)_mainSplitter).BeginInit();
+            _mainSplitter.Panel1.SuspendLayout();
+            _mainSplitter.Panel2.SuspendLayout();
+            _mainSplitter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)_infoSplitter).BeginInit();
+            _infoSplitter.Panel1.SuspendLayout();
+            _infoSplitter.Panel2.SuspendLayout();
+            _infoSplitter.SuspendLayout();
             SuspendLayout();
             // 
             // dataset_form
             // 
-            dataset_form.Controls.Add(datasetUnselectedBox1);
-            dataset_form.Controls.Add(userAccountBox1);
-            dataset_form.Controls.Add(listView1);
-            dataset_form.Controls.Add(pwdchg_panel);
-            dataset_form.Controls.Add(lock_panel);
-            dataset_form.Controls.Add(unlock_panel);
+            dataset_form.Controls.Add(_mainSplitter);
             dataset_form.Dock = DockStyle.Fill;
             dataset_form.Location = new Point(0, 0);
             dataset_form.Name = "dataset_form";
-            dataset_form.Size = new Size(725, 461);
+            dataset_form.Size = new Size(278, 372);
             dataset_form.TabIndex = 8;
             // 
-            // userAccountBox1
+            // _mainSplitter
             // 
-            userAccountBox1.Host = "localhost";
-            userAccountBox1.Location = new Point(172, 237);
-            userAccountBox1.Name = "userAccountBox1";
-            userAccountBox1.Size = new Size(129, 147);
-            userAccountBox1.TabIndex = 11;
-            userAccountBox1.Username = "user";
+            _mainSplitter.Dock = DockStyle.Fill;
+            _mainSplitter.FixedPanel = FixedPanel.Panel2;
+            _mainSplitter.Location = new Point(0, 0);
+            _mainSplitter.Name = "_mainSplitter";
             // 
-            // listView1
+            // _mainSplitter.Panel1
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
-            listView1.FullRowSelect = true;
-            listView1.Items.AddRange(new ListViewItem[] { listViewItem6, listViewItem7, listViewItem8, listViewItem9, listViewItem10 });
-            listView1.Location = new Point(3, 3);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(163, 381);
-            listView1.TabIndex = 10;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            _mainSplitter.Panel1.Controls.Add(_datasetListView);
+            // 
+            // _mainSplitter.Panel2
+            // 
+            _mainSplitter.Panel2.Controls.Add(_infoSplitter);
+            _mainSplitter.Size = new Size(278, 372);
+            _mainSplitter.SplitterDistance = 141;
+            _mainSplitter.TabIndex = 16;
+            // 
+            // _datasetListView
+            // 
+            _datasetListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+            _datasetListView.Dock = DockStyle.Fill;
+            _datasetListView.FullRowSelect = true;
+            _datasetListView.Items.AddRange(new ListViewItem[] { listViewItem6, listViewItem7, listViewItem8, listViewItem9, listViewItem10 });
+            _datasetListView.Location = new Point(0, 0);
+            _datasetListView.Name = "_datasetListView";
+            _datasetListView.Size = new Size(141, 372);
+            _datasetListView.TabIndex = 10;
+            _datasetListView.UseCompatibleStateImageBehavior = false;
+            _datasetListView.View = View.Details;
             // 
             // columnHeader1
             // 
@@ -105,177 +103,69 @@
             // 
             columnHeader2.Text = "Status";
             // 
-            // pwdchg_panel
+            // _infoSplitter
             // 
-            pwdchg_panel.Controls.Add(checkBox4);
-            pwdchg_panel.Controls.Add(label6);
-            pwdchg_panel.Controls.Add(label5);
-            pwdchg_panel.Controls.Add(textBox3);
-            pwdchg_panel.Controls.Add(button4);
-            pwdchg_panel.Controls.Add(button2);
-            pwdchg_panel.Controls.Add(textBox2);
-            pwdchg_panel.Location = new Point(442, 3);
-            pwdchg_panel.Name = "pwdchg_panel";
-            pwdchg_panel.Size = new Size(129, 228);
-            pwdchg_panel.TabIndex = 7;
-            pwdchg_panel.TabStop = false;
-            pwdchg_panel.Text = "change password";
+            _infoSplitter.Dock = DockStyle.Fill;
+            _infoSplitter.FixedPanel = FixedPanel.Panel2;
+            _infoSplitter.Location = new Point(0, 0);
+            _infoSplitter.Name = "_infoSplitter";
+            _infoSplitter.Orientation = Orientation.Horizontal;
             // 
-            // checkBox4
+            // _infoSplitter.Panel1
             // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(6, 110);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(107, 19);
-            checkBox4.TabIndex = 6;
-            checkBox4.Text = "show password";
-            checkBox4.UseVisualStyleBackColor = true;
+            _infoSplitter.Panel1.Controls.Add(_editBox);
+            _infoSplitter.Panel1.Controls.Add(_infoBox);
+            _infoSplitter.Panel1.Controls.Add(_changePasswordBox);
+            _infoSplitter.Panel1.Controls.Add(_unlockBox);
             // 
-            // label6
+            // _infoSplitter.Panel2
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(6, 63);
-            label6.Name = "label6";
-            label6.Size = new Size(102, 15);
-            label6.TabIndex = 5;
-            label6.Text = "confirm password";
+            _infoSplitter.Panel2.Controls.Add(_userBox);
+            _infoSplitter.Size = new Size(133, 372);
+            _infoSplitter.SplitterDistance = 221;
+            _infoSplitter.TabIndex = 16;
             // 
-            // label5
+            // _editBox
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(6, 19);
-            label5.Name = "label5";
-            label5.Size = new Size(82, 15);
-            label5.TabIndex = 4;
-            label5.Text = "new password";
+            _editBox.Dock = DockStyle.Fill;
+            _editBox.Location = new Point(0, 0);
+            _editBox.Name = "_editBox";
+            _editBox.Size = new Size(133, 221);
+            _editBox.TabIndex = 15;
             // 
-            // textBox3
+            // _infoBox
             // 
-            textBox3.Location = new Point(6, 37);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(117, 23);
-            textBox3.TabIndex = 2;
+            _infoBox.Dock = DockStyle.Fill;
+            _infoBox.Location = new Point(0, 0);
+            _infoBox.Name = "_infoBox";
+            _infoBox.Size = new Size(133, 221);
+            _infoBox.TabIndex = 12;
             // 
-            // button4
+            // _changePasswordBox
             // 
-            button4.Location = new Point(6, 185);
-            button4.Name = "button4";
-            button4.Size = new Size(117, 23);
-            button4.TabIndex = 3;
-            button4.Text = "cancel";
-            button4.UseVisualStyleBackColor = true;
+            _changePasswordBox.Dock = DockStyle.Fill;
+            _changePasswordBox.Location = new Point(0, 0);
+            _changePasswordBox.Name = "_changePasswordBox";
+            _changePasswordBox.Size = new Size(133, 221);
+            _changePasswordBox.TabIndex = 13;
             // 
-            // button2
+            // _unlockBox
             // 
-            button2.Location = new Point(6, 135);
-            button2.Name = "button2";
-            button2.Size = new Size(117, 23);
-            button2.TabIndex = 0;
-            button2.Text = "change";
-            button2.UseVisualStyleBackColor = true;
+            _unlockBox.Dock = DockStyle.Fill;
+            _unlockBox.Location = new Point(0, 0);
+            _unlockBox.Name = "_unlockBox";
+            _unlockBox.Size = new Size(133, 221);
+            _unlockBox.TabIndex = 14;
             // 
-            // textBox2
+            // _userBox
             // 
-            textBox2.Location = new Point(6, 81);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(117, 23);
-            textBox2.TabIndex = 1;
-            // 
-            // lock_panel
-            // 
-            lock_panel.Controls.Add(button5);
-            lock_panel.Controls.Add(checkBox2);
-            lock_panel.Controls.Add(button3);
-            lock_panel.Location = new Point(307, 3);
-            lock_panel.Name = "lock_panel";
-            lock_panel.Size = new Size(129, 228);
-            lock_panel.TabIndex = 6;
-            lock_panel.TabStop = false;
-            lock_panel.Text = "dataset options";
-            // 
-            // button5
-            // 
-            button5.Location = new Point(6, 185);
-            button5.Name = "button5";
-            button5.Size = new Size(117, 23);
-            button5.TabIndex = 3;
-            button5.Text = "change password";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(6, 51);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(95, 19);
-            checkBox2.TabIndex = 6;
-            checkBox2.Text = "force locking";
-            checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(6, 22);
-            button3.Name = "button3";
-            button3.Size = new Size(117, 23);
-            button3.TabIndex = 1;
-            button3.Text = "lock";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // unlock_panel
-            // 
-            unlock_panel.Controls.Add(label4);
-            unlock_panel.Controls.Add(checkBox1);
-            unlock_panel.Controls.Add(unlock_button);
-            unlock_panel.Controls.Add(password_textbox);
-            unlock_panel.Location = new Point(172, 3);
-            unlock_panel.Name = "unlock_panel";
-            unlock_panel.Size = new Size(129, 228);
-            unlock_panel.TabIndex = 0;
-            unlock_panel.TabStop = false;
-            unlock_panel.Text = "unlock dataset";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 48);
-            label4.Name = "label4";
-            label4.Size = new Size(57, 15);
-            label4.TabIndex = 6;
-            label4.Text = "password";
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(6, 95);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(107, 19);
-            checkBox1.TabIndex = 5;
-            checkBox1.Text = "show password";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // unlock_button
-            // 
-            unlock_button.Location = new Point(6, 22);
-            unlock_button.Name = "unlock_button";
-            unlock_button.Size = new Size(117, 23);
-            unlock_button.TabIndex = 1;
-            unlock_button.Text = "unlock";
-            unlock_button.UseVisualStyleBackColor = true;
-            // 
-            // password_textbox
-            // 
-            password_textbox.Location = new Point(6, 66);
-            password_textbox.Name = "password_textbox";
-            password_textbox.Size = new Size(117, 23);
-            password_textbox.TabIndex = 4;
-            password_textbox.Tag = "";
-            // 
-            // datasetUnselectedBox1
-            // 
-            datasetUnselectedBox1.Location = new Point(577, 5);
-            datasetUnselectedBox1.Name = "datasetUnselectedBox1";
-            datasetUnselectedBox1.Size = new Size(129, 226);
-            datasetUnselectedBox1.TabIndex = 12;
+            _userBox.Dock = DockStyle.Fill;
+            _userBox.Host = "localhost";
+            _userBox.Location = new Point(0, 0);
+            _userBox.Name = "_userBox";
+            _userBox.Size = new Size(133, 147);
+            _userBox.TabIndex = 11;
+            _userBox.Username = "user";
             // 
             // DatasetViewer
             // 
@@ -283,41 +173,31 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dataset_form);
             Name = "DatasetViewer";
-            Size = new Size(725, 461);
+            Size = new Size(278, 372);
             dataset_form.ResumeLayout(false);
-            pwdchg_panel.ResumeLayout(false);
-            pwdchg_panel.PerformLayout();
-            lock_panel.ResumeLayout(false);
-            lock_panel.PerformLayout();
-            unlock_panel.ResumeLayout(false);
-            unlock_panel.PerformLayout();
+            _mainSplitter.Panel1.ResumeLayout(false);
+            _mainSplitter.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)_mainSplitter).EndInit();
+            _mainSplitter.ResumeLayout(false);
+            _infoSplitter.Panel1.ResumeLayout(false);
+            _infoSplitter.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)_infoSplitter).EndInit();
+            _infoSplitter.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel dataset_form;
-        private ListView listView1;
+        private ListView _datasetListView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private GroupBox pwdchg_panel;
-        private CheckBox checkBox4;
-        private Label label6;
-        private Label label5;
-        private TextBox textBox3;
-        private Button button4;
-        private Button button2;
-        private TextBox textBox2;
-        private GroupBox lock_panel;
-        private Button button5;
-        private CheckBox checkBox2;
-        private Button button3;
-        private GroupBox unlock_panel;
-        private Label label4;
-        private CheckBox checkBox1;
-        private Button unlock_button;
-        private TextBox password_textbox;
-        private UserAccountBox userAccountBox1;
-        private DatasetUnselectedBox datasetUnselectedBox1;
+        private UserAccountBox _userBox;
+        private DatasetNone _infoBox;
+        private DatasetPasswordChange _changePasswordBox;
+        private DatasetUnlock _unlockBox;
+        private DatasetEdit _editBox;
+        private SplitContainer _mainSplitter;
+        private SplitContainer _infoSplitter;
     }
 }
