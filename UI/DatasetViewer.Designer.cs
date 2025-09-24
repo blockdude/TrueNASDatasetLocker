@@ -28,21 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem("jam");
-            ListViewItem listViewItem2 = new ListViewItem("cas");
-            ListViewItem listViewItem3 = new ListViewItem("drv");
-            ListViewItem listViewItem4 = new ListViewItem("12341");
-            ListViewItem listViewItem5 = new ListViewItem("123414");
+            ListViewItem listViewItem6 = new ListViewItem("jam");
+            ListViewItem listViewItem7 = new ListViewItem("cas");
+            ListViewItem listViewItem8 = new ListViewItem("drv");
+            ListViewItem listViewItem9 = new ListViewItem("12341");
+            ListViewItem listViewItem10 = new ListViewItem("123414");
             dataset_form = new Panel();
+            userAccountBox1 = new UserAccountBox();
             listView1 = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
-            default_panel = new GroupBox();
-            textBox7 = new TextBox();
-            user_panel = new GroupBox();
-            textBox6 = new TextBox();
-            button7 = new Button();
-            textBox9 = new TextBox();
             pwdchg_panel = new GroupBox();
             checkBox4 = new CheckBox();
             label6 = new Label();
@@ -60,9 +55,8 @@
             checkBox1 = new CheckBox();
             unlock_button = new Button();
             password_textbox = new TextBox();
+            datasetUnselectedBox1 = new DatasetUnselectedBox();
             dataset_form.SuspendLayout();
-            default_panel.SuspendLayout();
-            user_panel.SuspendLayout();
             pwdchg_panel.SuspendLayout();
             lock_panel.SuspendLayout();
             unlock_panel.SuspendLayout();
@@ -70,23 +64,32 @@
             // 
             // dataset_form
             // 
+            dataset_form.Controls.Add(datasetUnselectedBox1);
+            dataset_form.Controls.Add(userAccountBox1);
             dataset_form.Controls.Add(listView1);
-            dataset_form.Controls.Add(default_panel);
-            dataset_form.Controls.Add(user_panel);
             dataset_form.Controls.Add(pwdchg_panel);
             dataset_form.Controls.Add(lock_panel);
             dataset_form.Controls.Add(unlock_panel);
             dataset_form.Dock = DockStyle.Fill;
             dataset_form.Location = new Point(0, 0);
             dataset_form.Name = "dataset_form";
-            dataset_form.Size = new Size(725, 390);
+            dataset_form.Size = new Size(725, 461);
             dataset_form.TabIndex = 8;
+            // 
+            // userAccountBox1
+            // 
+            userAccountBox1.Host = "localhost";
+            userAccountBox1.Location = new Point(172, 237);
+            userAccountBox1.Name = "userAccountBox1";
+            userAccountBox1.Size = new Size(129, 147);
+            userAccountBox1.TabIndex = 11;
+            userAccountBox1.Username = "user";
             // 
             // listView1
             // 
             listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
             listView1.FullRowSelect = true;
-            listView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5 });
+            listView1.Items.AddRange(new ListViewItem[] { listViewItem6, listViewItem7, listViewItem8, listViewItem9, listViewItem10 });
             listView1.Location = new Point(3, 3);
             listView1.Name = "listView1";
             listView1.Size = new Size(163, 381);
@@ -102,72 +105,6 @@
             // 
             columnHeader2.Text = "Status";
             // 
-            // default_panel
-            // 
-            default_panel.Controls.Add(textBox7);
-            default_panel.Location = new Point(577, 3);
-            default_panel.Name = "default_panel";
-            default_panel.Size = new Size(129, 263);
-            default_panel.TabIndex = 9;
-            default_panel.TabStop = false;
-            default_panel.Text = "select dataset";
-            // 
-            // textBox7
-            // 
-            textBox7.BorderStyle = BorderStyle.None;
-            textBox7.Enabled = false;
-            textBox7.Location = new Point(6, 84);
-            textBox7.Multiline = true;
-            textBox7.Name = "textBox7";
-            textBox7.ReadOnly = true;
-            textBox7.Size = new Size(117, 34);
-            textBox7.TabIndex = 0;
-            textBox7.Text = "Select a dataset to get started...";
-            textBox7.TextAlign = HorizontalAlignment.Center;
-            // 
-            // user_panel
-            // 
-            user_panel.Controls.Add(textBox6);
-            user_panel.Controls.Add(button7);
-            user_panel.Controls.Add(textBox9);
-            user_panel.Location = new Point(172, 272);
-            user_panel.Name = "user_panel";
-            user_panel.Size = new Size(129, 112);
-            user_panel.TabIndex = 8;
-            user_panel.TabStop = false;
-            user_panel.Text = "user";
-            // 
-            // textBox6
-            // 
-            textBox6.Enabled = false;
-            textBox6.Location = new Point(6, 51);
-            textBox6.Name = "textBox6";
-            textBox6.ReadOnly = true;
-            textBox6.Size = new Size(117, 23);
-            textBox6.TabIndex = 1;
-            textBox6.Text = "admin";
-            textBox6.TextAlign = HorizontalAlignment.Center;
-            // 
-            // button7
-            // 
-            button7.Location = new Point(6, 80);
-            button7.Name = "button7";
-            button7.Size = new Size(117, 23);
-            button7.TabIndex = 0;
-            button7.Text = "logout";
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // textBox9
-            // 
-            textBox9.Enabled = false;
-            textBox9.Location = new Point(6, 22);
-            textBox9.Name = "textBox9";
-            textBox9.ReadOnly = true;
-            textBox9.Size = new Size(117, 23);
-            textBox9.TabIndex = 10;
-            textBox9.Text = "cobalt.snow.io";
-            textBox9.TextAlign = HorizontalAlignment.Center;
-            // 
             // pwdchg_panel
             // 
             pwdchg_panel.Controls.Add(checkBox4);
@@ -179,7 +116,7 @@
             pwdchg_panel.Controls.Add(textBox2);
             pwdchg_panel.Location = new Point(442, 3);
             pwdchg_panel.Name = "pwdchg_panel";
-            pwdchg_panel.Size = new Size(129, 263);
+            pwdchg_panel.Size = new Size(129, 228);
             pwdchg_panel.TabIndex = 7;
             pwdchg_panel.TabStop = false;
             pwdchg_panel.Text = "change password";
@@ -221,7 +158,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(6, 234);
+            button4.Location = new Point(6, 185);
             button4.Name = "button4";
             button4.Size = new Size(117, 23);
             button4.TabIndex = 3;
@@ -251,14 +188,14 @@
             lock_panel.Controls.Add(button3);
             lock_panel.Location = new Point(307, 3);
             lock_panel.Name = "lock_panel";
-            lock_panel.Size = new Size(129, 263);
+            lock_panel.Size = new Size(129, 228);
             lock_panel.TabIndex = 6;
             lock_panel.TabStop = false;
             lock_panel.Text = "dataset options";
             // 
             // button5
             // 
-            button5.Location = new Point(6, 234);
+            button5.Location = new Point(6, 185);
             button5.Name = "button5";
             button5.Size = new Size(117, 23);
             button5.TabIndex = 3;
@@ -292,7 +229,7 @@
             unlock_panel.Controls.Add(password_textbox);
             unlock_panel.Location = new Point(172, 3);
             unlock_panel.Name = "unlock_panel";
-            unlock_panel.Size = new Size(129, 263);
+            unlock_panel.Size = new Size(129, 228);
             unlock_panel.TabIndex = 0;
             unlock_panel.TabStop = false;
             unlock_panel.Text = "unlock dataset";
@@ -333,18 +270,21 @@
             password_textbox.TabIndex = 4;
             password_textbox.Tag = "";
             // 
+            // datasetUnselectedBox1
+            // 
+            datasetUnselectedBox1.Location = new Point(577, 5);
+            datasetUnselectedBox1.Name = "datasetUnselectedBox1";
+            datasetUnselectedBox1.Size = new Size(129, 226);
+            datasetUnselectedBox1.TabIndex = 12;
+            // 
             // DatasetViewer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dataset_form);
             Name = "DatasetViewer";
-            Size = new Size(725, 390);
+            Size = new Size(725, 461);
             dataset_form.ResumeLayout(false);
-            default_panel.ResumeLayout(false);
-            default_panel.PerformLayout();
-            user_panel.ResumeLayout(false);
-            user_panel.PerformLayout();
             pwdchg_panel.ResumeLayout(false);
             pwdchg_panel.PerformLayout();
             lock_panel.ResumeLayout(false);
@@ -360,12 +300,6 @@
         private ListView listView1;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private GroupBox default_panel;
-        private TextBox textBox7;
-        private GroupBox user_panel;
-        private TextBox textBox6;
-        private Button button7;
-        private TextBox textBox9;
         private GroupBox pwdchg_panel;
         private CheckBox checkBox4;
         private Label label6;
@@ -383,5 +317,7 @@
         private CheckBox checkBox1;
         private Button unlock_button;
         private TextBox password_textbox;
+        private UserAccountBox userAccountBox1;
+        private DatasetUnselectedBox datasetUnselectedBox1;
     }
 }

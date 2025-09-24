@@ -2,7 +2,7 @@
 {
     public class WidthGauge : Control
     {
-        public WidthGauge()
+        public WidthGauge() : base()
         {
             this.ParentChanged += OnParentChange;
         }
@@ -24,7 +24,7 @@
                 return;
             }
 
-            this.Width = Parent.Width - Parent.Margin.Left - Parent.Margin.Right;
+            this.Width = Parent.Width - this.Margin.Left - this.Margin.Right;
         }
     }
 }

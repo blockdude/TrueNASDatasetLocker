@@ -1,6 +1,6 @@
 ﻿namespace TrueNASLocker.UI
 {
-    partial class LoginBox
+    partial class UserAccountBox
     {
         /// <summary> 
         /// Required designer variable.
@@ -35,24 +35,21 @@
             _hostTextBox = new TextBox();
             _userLabel = new Label();
             _userTextBox = new TextBox();
-            _passwordLabel = new Label();
-            _passwordTextBox = new TextBox();
-            _showPasswordCheckBox = new CheckBox();
-            _loginButton = new Button();
+            _logoutButton = new Button();
             _groupBox.SuspendLayout();
             flowLayoutPanelEx1.SuspendLayout();
             SuspendLayout();
             // 
             // _groupBox
             // 
-            _groupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             _groupBox.Controls.Add(flowLayoutPanelEx1);
+            _groupBox.Dock = DockStyle.Fill;
             _groupBox.Location = new Point(0, 0);
             _groupBox.Name = "_groupBox";
-            _groupBox.Size = new Size(159, 250);
-            _groupBox.TabIndex = 0;
+            _groupBox.Size = new Size(437, 545);
+            _groupBox.TabIndex = 9;
             _groupBox.TabStop = false;
-            _groupBox.Text = "Login";
+            _groupBox.Text = "User Account";
             // 
             // flowLayoutPanelEx1
             // 
@@ -63,118 +60,87 @@
             flowLayoutPanelEx1.Controls.Add(_hostTextBox);
             flowLayoutPanelEx1.Controls.Add(_userLabel);
             flowLayoutPanelEx1.Controls.Add(_userTextBox);
-            flowLayoutPanelEx1.Controls.Add(_passwordLabel);
-            flowLayoutPanelEx1.Controls.Add(_passwordTextBox);
-            flowLayoutPanelEx1.Controls.Add(_showPasswordCheckBox);
-            flowLayoutPanelEx1.Controls.Add(_loginButton);
+            flowLayoutPanelEx1.Controls.Add(_logoutButton);
             flowLayoutPanelEx1.Dock = DockStyle.Fill;
             flowLayoutPanelEx1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelEx1.Location = new Point(3, 19);
             flowLayoutPanelEx1.Name = "flowLayoutPanelEx1";
-            flowLayoutPanelEx1.Padding = new Padding(0, 21, 0, 0);
-            flowLayoutPanelEx1.Size = new Size(153, 228);
-            flowLayoutPanelEx1.TabIndex = 6;
+            flowLayoutPanelEx1.Padding = new Padding(0, 203, 0, 0);
+            flowLayoutPanelEx1.Size = new Size(431, 523);
+            flowLayoutPanelEx1.TabIndex = 12;
             // 
             // _widthGauge
             // 
-            _widthGauge.Anchor = AnchorStyles.Top;
-            _widthGauge.Location = new Point(0, 21);
+            _widthGauge.Location = new Point(0, 203);
             _widthGauge.Margin = new Padding(0);
             _widthGauge.Name = "_widthGauge";
-            _widthGauge.Size = new Size(153, 0);
-            _widthGauge.TabIndex = 14;
+            _widthGauge.Size = new Size(431, 0);
+            _widthGauge.TabIndex = 17;
+            _widthGauge.Text = "widthGauge1";
             // 
             // _hostLabel
             // 
             _hostLabel.AutoSize = true;
             _hostLabel.Dock = DockStyle.Fill;
-            _hostLabel.Location = new Point(3, 21);
+            _hostLabel.Location = new Point(3, 203);
             _hostLabel.Name = "_hostLabel";
-            _hostLabel.Size = new Size(147, 15);
-            _hostLabel.TabIndex = 6;
+            _hostLabel.Size = new Size(425, 15);
+            _hostLabel.TabIndex = 18;
             _hostLabel.Text = "Host";
             _hostLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // _hostTextBox
             // 
             _hostTextBox.Dock = DockStyle.Fill;
-            _hostTextBox.Location = new Point(3, 39);
+            _hostTextBox.Enabled = false;
+            _hostTextBox.Location = new Point(3, 221);
             _hostTextBox.Name = "_hostTextBox";
-            _hostTextBox.Size = new Size(147, 23);
-            _hostTextBox.TabIndex = 7;
+            _hostTextBox.ReadOnly = true;
+            _hostTextBox.Size = new Size(425, 23);
+            _hostTextBox.TabIndex = 16;
+            _hostTextBox.Text = "localhost";
             _hostTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // _userLabel
             // 
             _userLabel.AutoSize = true;
             _userLabel.Dock = DockStyle.Fill;
-            _userLabel.Location = new Point(3, 65);
+            _userLabel.Location = new Point(3, 247);
             _userLabel.Name = "_userLabel";
-            _userLabel.Size = new Size(147, 15);
-            _userLabel.TabIndex = 8;
+            _userLabel.Size = new Size(425, 15);
+            _userLabel.TabIndex = 19;
             _userLabel.Text = "Username";
             _userLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // _userTextBox
             // 
             _userTextBox.Dock = DockStyle.Fill;
-            _userTextBox.Location = new Point(3, 83);
+            _userTextBox.Enabled = false;
+            _userTextBox.Location = new Point(3, 265);
             _userTextBox.Name = "_userTextBox";
-            _userTextBox.Size = new Size(147, 23);
-            _userTextBox.TabIndex = 10;
+            _userTextBox.ReadOnly = true;
+            _userTextBox.Size = new Size(425, 23);
+            _userTextBox.TabIndex = 15;
+            _userTextBox.Text = "user";
             _userTextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // _passwordLabel
+            // _logoutButton
             // 
-            _passwordLabel.AutoSize = true;
-            _passwordLabel.Dock = DockStyle.Fill;
-            _passwordLabel.Location = new Point(3, 109);
-            _passwordLabel.Name = "_passwordLabel";
-            _passwordLabel.Size = new Size(147, 15);
-            _passwordLabel.TabIndex = 9;
-            _passwordLabel.Text = "Password";
-            _passwordLabel.TextAlign = ContentAlignment.MiddleCenter;
+            _logoutButton.Dock = DockStyle.Fill;
+            _logoutButton.Location = new Point(3, 294);
+            _logoutButton.Name = "_logoutButton";
+            _logoutButton.Size = new Size(425, 23);
+            _logoutButton.TabIndex = 20;
+            _logoutButton.Text = "Logout";
+            _logoutButton.UseVisualStyleBackColor = true;
             // 
-            // _passwordTextBox
-            // 
-            _passwordTextBox.Dock = DockStyle.Fill;
-            _passwordTextBox.Location = new Point(3, 127);
-            _passwordTextBox.Name = "_passwordTextBox";
-            _passwordTextBox.PasswordChar = '*';
-            _passwordTextBox.Size = new Size(147, 23);
-            _passwordTextBox.TabIndex = 11;
-            _passwordTextBox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // _showPasswordCheckBox
-            // 
-            _showPasswordCheckBox.Anchor = AnchorStyles.Top;
-            _showPasswordCheckBox.AutoSize = true;
-            _showPasswordCheckBox.Location = new Point(22, 156);
-            _showPasswordCheckBox.Name = "_showPasswordCheckBox";
-            _showPasswordCheckBox.Size = new Size(108, 19);
-            _showPasswordCheckBox.TabIndex = 12;
-            _showPasswordCheckBox.Text = "Show Password";
-            _showPasswordCheckBox.TextAlign = ContentAlignment.MiddleCenter;
-            _showPasswordCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // _loginButton
-            // 
-            _loginButton.Dock = DockStyle.Fill;
-            _loginButton.Location = new Point(3, 181);
-            _loginButton.Name = "_loginButton";
-            _loginButton.Size = new Size(147, 23);
-            _loginButton.TabIndex = 13;
-            _loginButton.Text = "Login";
-            _loginButton.UseVisualStyleBackColor = true;
-            // 
-            // LoginBox
+            // UserAccountBox
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(_groupBox);
-            Margin = new Padding(0);
-            Name = "LoginBox";
-            Size = new Size(159, 250);
+            Name = "UserAccountBox";
+            Size = new Size(437, 545);
             _groupBox.ResumeLayout(false);
             flowLayoutPanelEx1.ResumeLayout(false);
             flowLayoutPanelEx1.PerformLayout();
@@ -190,9 +156,6 @@
         private TextBox _hostTextBox;
         private Label _userLabel;
         private TextBox _userTextBox;
-        private Label _passwordLabel;
-        private TextBox _passwordTextBox;
-        private CheckBox _showPasswordCheckBox;
-        private Button _loginButton;
+        private Button _logoutButton;
     }
 }
