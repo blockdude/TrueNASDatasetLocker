@@ -73,7 +73,6 @@
             _flowLayout.RightToLeft = RightToLeft.No;
             _flowLayout.Size = new Size(213, 243);
             _flowLayout.TabIndex = 0;
-            _flowLayout.Paint += _flowLayout_Paint;
             // 
             // _widthGauge
             // 

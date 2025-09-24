@@ -16,5 +16,10 @@ namespace TrueNASLocker
         {
 
         }
+
+        private void unlock_button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

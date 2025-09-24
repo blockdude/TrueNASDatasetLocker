@@ -1,40 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace TrueNASLocker.UI
+﻿namespace TrueNASLocker.UI
 {
     public partial class LoginBox : UserControl
     {
+        public string Host
+        {
+            get => _hostTextBox.Text;
+        }
+
+        public string Username
+        {
+            get => _userTextBox.Text;
+        }
+
+        public string Password
+        {
+            get => _passwordTextBox.Text;
+        }
+
+        public event EventHandler? LoginClick
+        {
+            add => _loginButton.Click += value;
+            remove => _loginButton.Click -= value;
+        }
+
         public LoginBox()
         {
             InitializeComponent();
-            this.Resize += OnResize;
             this._showPasswordCheckBox.CheckedChanged += OnPasswordCheckChange;
-        }
-
-        private void OnResize(object? sender, EventArgs e)
-        {
         }
 
         private void OnPasswordCheckChange(object? sender, EventArgs e)
         {
             _passwordTextBox.PasswordChar = _showPasswordCheckBox.Checked ? '\0' : '*';
-        }
-
-        private void OnLoginButtonPress(object? sender, EventArgs e)
-        {
-        }
-
-        private void _flowLayout_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
