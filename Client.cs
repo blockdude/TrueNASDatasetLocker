@@ -128,7 +128,7 @@ namespace TrueNASLocker
             if (!_connected || !_loggedin)
                 return false;
 
-            Dictionary<string, List<Dictionary<string, string>>> unlocklist = new Dictionary<string, List<Dictionary<string, string>>>
+            Dictionary<string, List<Dictionary<string, string>>> param = new Dictionary<string, List<Dictionary<string, string>>>
             {
                 {
                     "datasets", new List<Dictionary<string, string>>
@@ -142,11 +142,25 @@ namespace TrueNASLocker
                 }
             };
 
-            object? response = Task.Run(() => Call("pool.dataset.unlock", new List<object> { dataset, unlocklist })).Result;
+            object? response = Task.Run(() => Call("pool.dataset.unlock", new List<object> { dataset, param })).Result;
 
             if (response == null)
                 return false;
 
+            return true;
+        }
+
+        public bool ChangeDatasetPassword(string dataset, string password)
+        {
+            if (!_connected || !_loggedin)
+                return false;
+
+            Dictionary<string, string> param = new Dictionary<string, string>
+            {
+                { "passphrase", password }
+            };
+
+            object? response = Task.Run(() => Call("pool.dataset.change_key", new List<object> { dataset, param })).Result;
             return true;
         }
 
@@ -180,11 +194,6 @@ namespace TrueNASLocker
             }
 
             return res;
-        }
-
-        public bool ChangeDatasetPassword(string dataset, string newPassword)
-        {
-            return false;
         }
     }
 }

@@ -158,6 +158,8 @@ namespace TrueNASLocker.UI
             if (_client == null)
                 return;
 
+            _changePasswordBox.Password = "";
+            _changePasswordBox.ConfirmPassword = "";
             _state = State.LOCK;
         }
 
@@ -166,6 +168,39 @@ namespace TrueNASLocker.UI
             if (_client == null)
                 return;
 
+            string passwordA = _changePasswordBox.Password;
+            string passwordB = _changePasswordBox.ConfirmPassword;
+
+            if (passwordA != passwordB)
+            {
+                MessageBoxEx.Show(this, "Passwords do not match", "Invalid");
+                return;
+            }
+
+            List<string> failed = new List<string>();
+            foreach (ListViewItem item in _datasetListView.SelectedItems)
+            {
+                if (item.SubItems[1].Text == "Locked")
+                    continue;
+
+                string dataset = _storageBase + item.SubItems[0].Text;
+                if (!_client.ChangeDatasetPassword(dataset, passwordA))
+                {
+                    failed.Add(item.SubItems[0].Text);
+                }
+            }
+
+            if (failed.Count > 0)
+            {
+                string failedMessage = "";
+                foreach (string dataset in failed)
+                    failedMessage += "\n" + dataset;
+
+                MessageBox.Show(this, "Failed to change password for:" + failedMessage, "Warning");
+            }
+
+            _changePasswordBox.Password = "";
+            _changePasswordBox.ConfirmPassword = "";
             _state = State.LOCK;
         }
 

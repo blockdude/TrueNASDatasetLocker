@@ -98,6 +98,7 @@
             _passwordTextBox.Dock = DockStyle.Fill;
             _passwordTextBox.Location = new Point(3, 49);
             _passwordTextBox.Name = "_passwordTextBox";
+            _passwordTextBox.PasswordChar = '*';
             _passwordTextBox.Size = new Size(146, 23);
             _passwordTextBox.TabIndex = 1;
             _passwordTextBox.TextAlign = HorizontalAlignment.Center;
@@ -118,6 +119,7 @@
             _confirmTextBox.Dock = DockStyle.Fill;
             _confirmTextBox.Location = new Point(3, 93);
             _confirmTextBox.Name = "_confirmTextBox";
+            _confirmTextBox.PasswordChar = '*';
             _confirmTextBox.Size = new Size(146, 23);
             _confirmTextBox.TabIndex = 2;
             _confirmTextBox.TextAlign = HorizontalAlignment.Center;
