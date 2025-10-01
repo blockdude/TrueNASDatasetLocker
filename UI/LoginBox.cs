@@ -26,6 +26,23 @@
             remove => _loginButton.Click -= value;
         }
 
+        public new event KeyEventHandler? KeyDown
+        {
+            add
+            {
+                _hostTextBox.KeyDown += value;
+                _userTextBox.KeyDown += value;
+                _passwordTextBox.KeyDown += value;
+            }
+
+            remove
+            {
+                _hostTextBox.KeyDown -= value;
+                _userTextBox.KeyDown -= value;
+                _passwordTextBox.KeyDown -= value;
+            }
+        }
+
         public LoginBox()
         {
             InitializeComponent();

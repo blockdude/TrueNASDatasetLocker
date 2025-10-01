@@ -130,7 +130,7 @@
             _logoutButton.Location = new Point(3, 129);
             _logoutButton.Name = "_logoutButton";
             _logoutButton.Size = new Size(155, 23);
-            _logoutButton.TabIndex = 20;
+            _logoutButton.TabIndex = 400;
             _logoutButton.Text = "Logout";
             _logoutButton.UseVisualStyleBackColor = true;
             // 

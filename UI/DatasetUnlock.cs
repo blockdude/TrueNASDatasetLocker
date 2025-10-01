@@ -14,6 +14,12 @@
             remove => _unlockButton.Click -= value;
         }
 
+        public new event KeyEventHandler? KeyDown
+        {
+            add => _passwordTextBox.KeyDown += value;
+            remove => _passwordTextBox.KeyDown -= value;
+        }
+
         public DatasetUnlock()
         {
             InitializeComponent();

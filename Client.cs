@@ -161,6 +161,10 @@ namespace TrueNASLocker
             };
 
             object? response = Task.Run(() => Call("pool.dataset.change_key", new List<object> { dataset, param })).Result;
+
+            if (response == null)
+                return false;
+
             return true;
         }
 

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             _groupBox = new GroupBox();
-            _changePasswordButton = new Button();
-            _lockButton = new Button();
             _flowLayout = new FlowLayoutPanelEx();
             _widthGauge = new WidthGauge();
+            _lockButton = new Button();
+            _changePasswordButton = new Button();
             _groupBox.SuspendLayout();
             _flowLayout.SuspendLayout();
             SuspendLayout();
@@ -47,26 +47,6 @@
             _groupBox.TabIndex = 7;
             _groupBox.TabStop = false;
             _groupBox.Text = "Dataset";
-            // 
-            // _changePasswordButton
-            // 
-            _changePasswordButton.Dock = DockStyle.Fill;
-            _changePasswordButton.Location = new Point(3, 90);
-            _changePasswordButton.Name = "_changePasswordButton";
-            _changePasswordButton.Size = new Size(136, 23);
-            _changePasswordButton.TabIndex = 3;
-            _changePasswordButton.Text = "Change Password";
-            _changePasswordButton.UseVisualStyleBackColor = true;
-            // 
-            // _lockButton
-            // 
-            _lockButton.Dock = DockStyle.Fill;
-            _lockButton.Location = new Point(3, 61);
-            _lockButton.Name = "_lockButton";
-            _lockButton.Size = new Size(136, 23);
-            _lockButton.TabIndex = 1;
-            _lockButton.Text = "Lock";
-            _lockButton.UseVisualStyleBackColor = true;
             // 
             // _flowLayout
             // 
@@ -91,6 +71,26 @@
             _widthGauge.Size = new Size(142, 0);
             _widthGauge.TabIndex = 7;
             _widthGauge.Text = "widthGauge1";
+            // 
+            // _lockButton
+            // 
+            _lockButton.Dock = DockStyle.Fill;
+            _lockButton.Location = new Point(3, 61);
+            _lockButton.Name = "_lockButton";
+            _lockButton.Size = new Size(136, 23);
+            _lockButton.TabIndex = 200;
+            _lockButton.Text = "Lock";
+            _lockButton.UseVisualStyleBackColor = true;
+            // 
+            // _changePasswordButton
+            // 
+            _changePasswordButton.Dock = DockStyle.Fill;
+            _changePasswordButton.Location = new Point(3, 90);
+            _changePasswordButton.Name = "_changePasswordButton";
+            _changePasswordButton.Size = new Size(136, 23);
+            _changePasswordButton.TabIndex = 210;
+            _changePasswordButton.Text = "Change Password";
+            _changePasswordButton.UseVisualStyleBackColor = true;
             // 
             // DatasetEdit
             // 

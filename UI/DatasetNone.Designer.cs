@@ -74,15 +74,16 @@
             _infoTextBox.ReadOnly = true;
             _infoTextBox.Size = new Size(102, 31);
             _infoTextBox.TabIndex = 1;
+            _infoTextBox.TabStop = false;
             _infoTextBox.Text = "Select a dataset to get started...";
             _infoTextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // DatasetUnselectedBox
+            // DatasetNone
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(_groupBox);
-            Name = "DatasetUnselectedBox";
+            Name = "DatasetNone";
             Size = new Size(115, 206);
             _groupBox.ResumeLayout(false);
             _tableLayoutPanel.ResumeLayout(false);

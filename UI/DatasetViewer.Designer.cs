@@ -70,6 +70,7 @@
             _datasetView.Size = new Size(325, 357);
             _datasetView.SplitterDistance = 187;
             _datasetView.TabIndex = 16;
+            _datasetView.TabStop = false;
             // 
             // _datasetListView
             // 
@@ -82,6 +83,7 @@
             _datasetListView.Size = new Size(187, 357);
             _datasetListView.Sorting = SortOrder.Ascending;
             _datasetListView.TabIndex = 10;
+            _datasetListView.TabStop = false;
             _datasetListView.UseCompatibleStateImageBehavior = false;
             _datasetListView.View = View.Details;
             // 
@@ -116,14 +118,16 @@
             _infoSplitter.Size = new Size(134, 357);
             _infoSplitter.SplitterDistance = 214;
             _infoSplitter.TabIndex = 16;
+            _infoSplitter.TabStop = false;
             // 
             // _unlockBox
             // 
             _unlockBox.Dock = DockStyle.Fill;
             _unlockBox.Location = new Point(0, 0);
             _unlockBox.Name = "_unlockBox";
+            _unlockBox.Password = "";
             _unlockBox.Size = new Size(134, 214);
-            _unlockBox.TabIndex = 14;
+            _unlockBox.TabIndex = 10;
             // 
             // _editBox
             // 
@@ -143,9 +147,11 @@
             // 
             // _changePasswordBox
             // 
+            _changePasswordBox.ConfirmPassword = "";
             _changePasswordBox.Dock = DockStyle.Fill;
             _changePasswordBox.Location = new Point(0, 0);
             _changePasswordBox.Name = "_changePasswordBox";
+            _changePasswordBox.Password = "";
             _changePasswordBox.Size = new Size(134, 214);
             _changePasswordBox.TabIndex = 13;
             // 
@@ -156,7 +162,7 @@
             _userBox.Location = new Point(0, 0);
             _userBox.Name = "_userBox";
             _userBox.Size = new Size(134, 139);
-            _userBox.TabIndex = 11;
+            _userBox.TabIndex = 20;
             _userBox.Username = "user";
             // 
             // DatasetViewer

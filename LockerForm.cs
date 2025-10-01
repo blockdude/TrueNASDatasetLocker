@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using TrueNASLocker.UI;
 
 namespace TrueNASLocker
 {
@@ -19,8 +20,20 @@ namespace TrueNASLocker
 
         private void LockerForm_Load(object sender, EventArgs e)
         {
-            _loginBox.LoginClick += (sender, e) => Login_Click();
             _datasetViewer.LogoutClick += (sernder, e) => Logout_Click();
+            _loginBox.LoginClick += (sender, e) => Login_Click();
+            _loginBox.KeyDown += (sender, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Login_Click();
+
+                    // stop the ding sound from playing
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            };
+
             _loginBox.BringToFront();
             _loginBox.Dock = DockStyle.Fill;
             _datasetViewer.BringToFront();
@@ -34,17 +47,14 @@ namespace TrueNASLocker
             string username = _loginBox.Username;
             string password = _loginBox.Password;
 
+            _loginBox.Enabled = false;
+
             Client? client = Client.Connect("ws://" + hostname + "/api/current");
 
-            if (client == null)
+            if (client == null || !client.Login(username, password))
             {
-                Debug.WriteLine("Failed to connect to host");
-                return;
-            }
-
-            if (!client.Login(username, password))
-            {
-                Debug.WriteLine("Wrong username or password");
+                MessageBoxEx.Show(this, client == null ? "Failed to connect to host" : "Invalid username or password", "Info");
+                _loginBox.Enabled = true;
                 return;
             }
 

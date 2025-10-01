@@ -26,6 +26,21 @@
             remove => _cancelButton.Click -= value;
         }
 
+        public new event KeyEventHandler? KeyDown
+        {
+            add
+            {
+                _passwordTextBox.KeyDown += value;
+                _confirmTextBox.KeyDown += value;
+            }
+
+            remove
+            {
+                _passwordTextBox.KeyDown -= value;
+                _confirmTextBox.KeyDown -= value;
+            }
+        }
+
         public DatasetPasswordChange()
         {
             InitializeComponent();

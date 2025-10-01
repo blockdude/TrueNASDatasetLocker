@@ -100,7 +100,7 @@
             _passwordTextBox.Name = "_passwordTextBox";
             _passwordTextBox.PasswordChar = '*';
             _passwordTextBox.Size = new Size(146, 23);
-            _passwordTextBox.TabIndex = 1;
+            _passwordTextBox.TabIndex = 200;
             _passwordTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // _confirmLabel
@@ -121,7 +121,7 @@
             _confirmTextBox.Name = "_confirmTextBox";
             _confirmTextBox.PasswordChar = '*';
             _confirmTextBox.Size = new Size(146, 23);
-            _confirmTextBox.TabIndex = 2;
+            _confirmTextBox.TabIndex = 210;
             _confirmTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // _showPasswordCheckBox
@@ -131,7 +131,7 @@
             _showPasswordCheckBox.Location = new Point(22, 122);
             _showPasswordCheckBox.Name = "_showPasswordCheckBox";
             _showPasswordCheckBox.Size = new Size(108, 19);
-            _showPasswordCheckBox.TabIndex = 6;
+            _showPasswordCheckBox.TabIndex = 220;
             _showPasswordCheckBox.Text = "Show Password";
             _showPasswordCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -141,7 +141,7 @@
             _confirmButton.Location = new Point(3, 147);
             _confirmButton.Name = "_confirmButton";
             _confirmButton.Size = new Size(146, 23);
-            _confirmButton.TabIndex = 0;
+            _confirmButton.TabIndex = 230;
             _confirmButton.Text = "Confirm";
             _confirmButton.UseVisualStyleBackColor = true;
             // 
@@ -151,7 +151,7 @@
             _cancelButton.Location = new Point(3, 176);
             _cancelButton.Name = "_cancelButton";
             _cancelButton.Size = new Size(146, 23);
-            _cancelButton.TabIndex = 3;
+            _cancelButton.TabIndex = 240;
             _cancelButton.Text = "Cancel";
             _cancelButton.UseVisualStyleBackColor = true;
             // 

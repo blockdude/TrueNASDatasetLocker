@@ -43,11 +43,14 @@
             // 
             // _loginBox
             // 
+            _loginBox.Hostname = "";
             _loginBox.Location = new Point(197, 9);
             _loginBox.Margin = new Padding(0);
             _loginBox.Name = "_loginBox";
+            _loginBox.Password = "";
             _loginBox.Size = new Size(128, 363);
             _loginBox.TabIndex = 1;
+            _loginBox.Username = "";
             // 
             // LockerForm
             // 
@@ -57,6 +60,7 @@
             Controls.Add(_datasetViewer);
             Controls.Add(_loginBox);
             Name = "LockerForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TrueNAS Locker";
             Load += LockerForm_Load;
             ResumeLayout(false);

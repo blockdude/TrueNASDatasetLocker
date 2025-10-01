@@ -74,6 +74,30 @@ namespace TrueNASLocker.UI
             _changePasswordBox.ConfirmClick += (sender, e) => ConfirmChangePassword_Click();
             _unlockBox.UnlockClick += (sender, e) => UnlockDataset_Click();
             _editBox.LockClick += (sender, e) => LockDataset_Click();
+
+            _unlockBox.KeyDown += (sender, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    UnlockDataset_Click();
+
+                    // stop the ding sound from playing
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            };
+
+            _changePasswordBox.KeyDown += (sender, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ConfirmChangePassword_Click();
+
+                    // stop the ding sound from playing
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            };
         }
 
         public void SetClient(Client client, string hostname, string username)
@@ -171,6 +195,7 @@ namespace TrueNASLocker.UI
             string passwordA = _changePasswordBox.Password;
             string passwordB = _changePasswordBox.ConfirmPassword;
 
+            this.Enabled = false;
             if (passwordA != passwordB)
             {
                 MessageBoxEx.Show(this, "Passwords do not match", "Invalid");
@@ -202,12 +227,15 @@ namespace TrueNASLocker.UI
             _changePasswordBox.Password = "";
             _changePasswordBox.ConfirmPassword = "";
             _state = State.LOCK;
+            this.Enabled = true;
         }
 
         private void LockDataset_Click()
         {
             if (_client == null)
                 return;
+
+            this.Enabled = false;
 
             foreach (ListViewItem item in _datasetListView.SelectedItems)
             {
@@ -222,12 +250,15 @@ namespace TrueNASLocker.UI
             Thread.Sleep(1000);
             RefreshListView();
             RefreshState();
+            this.Enabled = true;
         }
 
         private void UnlockDataset_Click()
         {
             if (_client == null)
                 return;
+
+            this.Enabled = false;
 
             foreach (ListViewItem item in _datasetListView.SelectedItems)
             {
@@ -243,6 +274,7 @@ namespace TrueNASLocker.UI
             Thread.Sleep(1000);
             RefreshListView();
             RefreshState();
+            this.Enabled = true;
         }
     }
 }

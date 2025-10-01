@@ -94,7 +94,7 @@
             _passwordTextBox.Name = "_passwordTextBox";
             _passwordTextBox.PasswordChar = '*';
             _passwordTextBox.Size = new Size(147, 23);
-            _passwordTextBox.TabIndex = 4;
+            _passwordTextBox.TabIndex = 200;
             _passwordTextBox.Tag = "";
             _passwordTextBox.TextAlign = HorizontalAlignment.Center;
             // 
@@ -105,7 +105,7 @@
             _showPasswordCheckBox.Location = new Point(23, 102);
             _showPasswordCheckBox.Name = "_showPasswordCheckBox";
             _showPasswordCheckBox.Size = new Size(107, 19);
-            _showPasswordCheckBox.TabIndex = 5;
+            _showPasswordCheckBox.TabIndex = 210;
             _showPasswordCheckBox.Text = "show password";
             _showPasswordCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -115,7 +115,7 @@
             _unlockButton.Location = new Point(3, 127);
             _unlockButton.Name = "_unlockButton";
             _unlockButton.Size = new Size(147, 23);
-            _unlockButton.TabIndex = 1;
+            _unlockButton.TabIndex = 220;
             _unlockButton.Text = "Unlock";
             _unlockButton.UseVisualStyleBackColor = true;
             // 
