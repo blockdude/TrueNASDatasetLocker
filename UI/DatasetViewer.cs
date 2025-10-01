@@ -58,6 +58,12 @@ namespace TrueNASLocker.UI
             }
         }
 
+        public event EventHandler? LogoutClick
+        {
+            add => _userBox.LogoutClick += value;
+            remove => _userBox.LogoutClick -= value;
+        }
+
         public DatasetViewer()
         {
             InitializeComponent();
@@ -70,8 +76,10 @@ namespace TrueNASLocker.UI
             _editBox.LockClick += (sender, e) => LockDataset_Click();
         }
 
-        public void SetClient(Client? client)
+        public void SetClient(Client client, string hostname, string username)
         {
+            _userBox.Hostname = hostname;
+            _userBox.Username = username;
             _client = client;
             RefreshListView();
         }
@@ -114,6 +122,21 @@ namespace TrueNASLocker.UI
             _state = state;
         }
 
+        public void Logout()
+        {
+            if (_client != null && !_client.Logout())
+                Debug.WriteLine("Failed to logout from " + _userBox.Hostname);
+            _client?.Dispose();
+
+            _client = null;
+            _userBox.Hostname = "";
+            _userBox.Username = "";
+            _unlockBox.Password = "";
+            _changePasswordBox.Password = "";
+            _changePasswordBox.ConfirmPassword = "";
+            _datasetListView.Items.Clear();
+        }
+
         private void ListView_Click()
         {
             if (_client == null)
@@ -153,10 +176,14 @@ namespace TrueNASLocker.UI
 
             foreach (ListViewItem item in _datasetListView.SelectedItems)
             {
+                if (item.SubItems[1].Text == "Locked")
+                    continue;
+
                 string dataset = _storageBase + item.SubItems[0].Text;
                 _client.LockDataset(dataset);
             }
 
+            // fix Client.LockDataset so i can remove this thread sleep
             Thread.Sleep(1000);
             RefreshListView();
             RefreshState();
@@ -169,11 +196,15 @@ namespace TrueNASLocker.UI
 
             foreach (ListViewItem item in _datasetListView.SelectedItems)
             {
+                if (item.SubItems[1].Text == "Unlocked")
+                    continue;
+
                 string dataset = _storageBase + item.SubItems[0].Text;
                 string password = _unlockBox.Password;
                 _client.UnlockDataset(dataset, password);
             }
 
+            _unlockBox.Password = "";
             Thread.Sleep(1000);
             RefreshListView();
             RefreshState();

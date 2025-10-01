@@ -2,7 +2,7 @@
 {
     public partial class UserAccountBox : UserControl
     {
-        public string Host
+        public string Hostname
         {
             get => _hostTextBox.Text;
             set => _hostTextBox.Text = value;

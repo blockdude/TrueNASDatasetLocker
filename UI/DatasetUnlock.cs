@@ -5,7 +5,7 @@
         public string Password
         {
             get => _passwordTextBox.Text;
-            private set => _passwordTextBox.Text = value;
+            set => _passwordTextBox.Text = value;
         }
 
         public event EventHandler? UnlockClick

@@ -2,19 +2,22 @@
 {
     public partial class LoginBox : UserControl
     {
-        public string Host
+        public string Hostname
         {
             get => _hostTextBox.Text;
+            set => _hostTextBox.Text = value;
         }
 
         public string Username
         {
             get => _userTextBox.Text;
+            set => _userTextBox.Text = value;
         }
 
         public string Password
         {
             get => _passwordTextBox.Text;
+            set => _passwordTextBox.Text = value;
         }
 
         public event EventHandler? LoginClick

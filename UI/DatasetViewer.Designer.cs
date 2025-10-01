@@ -152,7 +152,7 @@
             // _userBox
             // 
             _userBox.Dock = DockStyle.Fill;
-            _userBox.Host = "localhost";
+            _userBox.Hostname = "localhost";
             _userBox.Location = new Point(0, 0);
             _userBox.Name = "_userBox";
             _userBox.Size = new Size(134, 139);

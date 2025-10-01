@@ -2,6 +2,18 @@
 {
     public partial class DatasetPasswordChange : UserControl
     {
+        public string Password
+        {
+            get => _passwordTextBox.Text;
+            set => _passwordTextBox.Text = value;
+        }
+
+        public string ConfirmPassword
+        {
+            get => _confirmTextBox.Text;
+            set => _confirmTextBox.Text = value;
+        }
+
         public event EventHandler? ConfirmClick
         {
             add => _confirmButton.Click += value;

@@ -29,23 +29,33 @@
         private void InitializeComponent()
         {
             _datasetViewer = new TrueNASLocker.UI.DatasetViewer();
+            _loginBox = new TrueNASLocker.UI.LoginBox();
             SuspendLayout();
             // 
             // _datasetViewer
             // 
-            _datasetViewer.Dock = DockStyle.Fill;
-            _datasetViewer.Location = new Point(0, 0);
+            _datasetViewer.Location = new Point(12, 9);
             _datasetViewer.Name = "_datasetViewer";
             _datasetViewer.Padding = new Padding(3);
-            _datasetViewer.Size = new Size(330, 378);
+            _datasetViewer.Size = new Size(182, 360);
             _datasetViewer.TabIndex = 0;
+            _datasetViewer.Visible = false;
+            // 
+            // _loginBox
+            // 
+            _loginBox.Location = new Point(197, 9);
+            _loginBox.Margin = new Padding(0);
+            _loginBox.Name = "_loginBox";
+            _loginBox.Size = new Size(128, 363);
+            _loginBox.TabIndex = 1;
             // 
             // LockerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(330, 378);
+            ClientSize = new Size(334, 381);
             Controls.Add(_datasetViewer);
+            Controls.Add(_loginBox);
             Name = "LockerForm";
             Text = "TrueNAS Locker";
             Load += LockerForm_Load;
@@ -55,5 +65,6 @@
         #endregion
 
         private UI.DatasetViewer _datasetViewer;
+        private UI.LoginBox _loginBox;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using JsonRpcClient.Clients;
 using Newtonsoft.Json;
+using System;
 using System.Data;
 using System.Diagnostics;
 using System.Net.WebSockets;
@@ -36,20 +37,39 @@ namespace TrueNASLocker
         public required object pbkdf2iters;
     }
 
-    public class Client : RpcWsClient
+    public class Client : RpcWsClient, IDisposable
     {
         private bool _connected = false;
         private bool _loggedin = false;
 
-        public static Client Connect(string uri)
+        public bool Connected { get => _connected; }
+        public bool Loggedin { get => _loggedin; }
+
+        public static Client? Connect(string uri)
         {
-            return Task.Run(() => new Client(uri)).Result;
+            Client client = Task.Run(() => new Client(uri)).Result;
+            return client.Connected ? client : null;
+        }
+
+        public void Dispose()
+        {
+            Task.Run(() => Close());
         }
 
         private Client(string uri) : base(uri)
         {
-            Connect().Wait();
-            _connected = true;
+            Task connect = Connect();
+
+            try
+            {
+                connect.Wait(5000);
+            }
+            catch (AggregateException ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            _connected = connect.Status == TaskStatus.RanToCompletion;
         }
 
         public bool Login(string username, string password)
