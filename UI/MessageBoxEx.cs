@@ -10,7 +10,7 @@ namespace TrueNASLocker.UI
     /// </summary>
     internal static class MessageBoxEx
     {
-        private static IWin32Window _owner;
+        private static IWin32Window? _owner;
         private static readonly HookProc _hookProc = MessageBoxHookProc;
         private static nint _hHook = nint.Zero;
 
@@ -156,7 +156,7 @@ namespace TrueNASLocker.UI
         #endregion
 
         #region Private Methods
-        private static void Initialize(IWin32Window owner = null)
+        private static void Initialize(IWin32Window? owner = null)
         {
             _owner = owner;
             if (_hHook != nint.Zero)
@@ -168,7 +168,7 @@ namespace TrueNASLocker.UI
                 return;
             }
 
-            nint ownerHandle = _owner.Handle;
+            nint ownerHandle = owner.Handle;
             uint threadId = NativeMethods.GetWindowThreadProcessId(ownerHandle, out uint _);
             _hHook = NativeMethods.SetWindowsHookEx(WH_CALLWNDPROCRET, _hookProc, nint.Zero, threadId);
         }
@@ -180,7 +180,7 @@ namespace TrueNASLocker.UI
                 return NativeMethods.CallNextHookEx(_hHook, nCode, wParam, lParam);
             }
 
-            CWPRETSTRUCT msg = (CWPRETSTRUCT)Marshal.PtrToStructure(lParam, typeof(CWPRETSTRUCT));
+            CWPRETSTRUCT msg = (CWPRETSTRUCT)(Marshal.PtrToStructure(lParam, typeof(CWPRETSTRUCT)) ?? throw new Exception());
             nint hook = _hHook;
 
             if (msg.message == (uint)CbtHookAction.HCBT_ACTIVATE)
@@ -208,7 +208,7 @@ namespace TrueNASLocker.UI
             int height = recChild.Height - recChild.Y;
 
             Rectangle recParent = Rectangle.Empty;
-            success = NativeMethods.GetWindowRect(_owner.Handle, ref recParent);
+            success = NativeMethods.GetWindowRect(_owner == null ? 0 : _owner.Handle, ref recParent);
 
             if (!success || recParent.X == -32000 && recParent.Y == -32000)
             {

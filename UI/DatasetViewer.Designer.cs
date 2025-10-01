@@ -34,6 +34,8 @@
             ListViewItem listViewItem4 = new ListViewItem("jam/cas");
             ListViewItem listViewItem5 = new ListViewItem("jam/drv");
             _datasetView = new SplitContainer();
+            _datasetControlsSplit = new SplitContainer();
+            _refreshButton = new Button();
             _datasetListView = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -47,6 +49,10 @@
             _datasetView.Panel1.SuspendLayout();
             _datasetView.Panel2.SuspendLayout();
             _datasetView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)_datasetControlsSplit).BeginInit();
+            _datasetControlsSplit.Panel1.SuspendLayout();
+            _datasetControlsSplit.Panel2.SuspendLayout();
+            _datasetControlsSplit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)_infoSplitter).BeginInit();
             _infoSplitter.Panel1.SuspendLayout();
             _infoSplitter.Panel2.SuspendLayout();
@@ -62,7 +68,7 @@
             // 
             // _datasetView.Panel1
             // 
-            _datasetView.Panel1.Controls.Add(_datasetListView);
+            _datasetView.Panel1.Controls.Add(_datasetControlsSplit);
             // 
             // _datasetView.Panel2
             // 
@@ -72,6 +78,36 @@
             _datasetView.TabIndex = 16;
             _datasetView.TabStop = false;
             // 
+            // _datasetControlsSplit
+            // 
+            _datasetControlsSplit.Dock = DockStyle.Fill;
+            _datasetControlsSplit.IsSplitterFixed = true;
+            _datasetControlsSplit.Location = new Point(0, 0);
+            _datasetControlsSplit.Name = "_datasetControlsSplit";
+            _datasetControlsSplit.Orientation = Orientation.Horizontal;
+            // 
+            // _datasetControlsSplit.Panel1
+            // 
+            _datasetControlsSplit.Panel1.Controls.Add(_refreshButton);
+            // 
+            // _datasetControlsSplit.Panel2
+            // 
+            _datasetControlsSplit.Panel2.Controls.Add(_datasetListView);
+            _datasetControlsSplit.Size = new Size(187, 357);
+            _datasetControlsSplit.SplitterDistance = 25;
+            _datasetControlsSplit.TabIndex = 12;
+            _datasetControlsSplit.TabStop = false;
+            // 
+            // _refreshButton
+            // 
+            _refreshButton.Dock = DockStyle.Fill;
+            _refreshButton.Location = new Point(0, 0);
+            _refreshButton.Name = "_refreshButton";
+            _refreshButton.Size = new Size(187, 25);
+            _refreshButton.TabIndex = 30;
+            _refreshButton.Text = "Refresh";
+            _refreshButton.UseVisualStyleBackColor = true;
+            // 
             // _datasetListView
             // 
             _datasetListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
@@ -80,7 +116,7 @@
             _datasetListView.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5 });
             _datasetListView.Location = new Point(0, 0);
             _datasetListView.Name = "_datasetListView";
-            _datasetListView.Size = new Size(187, 357);
+            _datasetListView.Size = new Size(187, 328);
             _datasetListView.Sorting = SortOrder.Ascending;
             _datasetListView.TabIndex = 10;
             _datasetListView.TabStop = false;
@@ -177,6 +213,10 @@
             _datasetView.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)_datasetView).EndInit();
             _datasetView.ResumeLayout(false);
+            _datasetControlsSplit.Panel1.ResumeLayout(false);
+            _datasetControlsSplit.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)_datasetControlsSplit).EndInit();
+            _datasetControlsSplit.ResumeLayout(false);
             _infoSplitter.Panel1.ResumeLayout(false);
             _infoSplitter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)_infoSplitter).EndInit();
@@ -195,5 +235,7 @@
         private DatasetEdit _editBox;
         private SplitContainer _datasetView;
         private SplitContainer _infoSplitter;
+        private Button _refreshButton;
+        private SplitContainer _datasetControlsSplit;
     }
 }

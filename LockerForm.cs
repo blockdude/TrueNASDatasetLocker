@@ -41,6 +41,11 @@ namespace TrueNASLocker
             SetState(State.LOGIN);
         }
 
+        private void LockerForm_Closing(object sernder, EventArgs e)
+        {
+            _datasetViewer.Logout();
+        }
+
         private void Login_Click()
         {
             string hostname = _loginBox.Hostname;

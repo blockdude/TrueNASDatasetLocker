@@ -74,6 +74,7 @@ namespace TrueNASLocker.UI
             _changePasswordBox.ConfirmClick += (sender, e) => ConfirmChangePassword_Click();
             _unlockBox.UnlockClick += (sender, e) => UnlockDataset_Click();
             _editBox.LockClick += (sender, e) => LockDataset_Click();
+            _refreshButton.Click += (sender, e) => Refresh_Click();
 
             _unlockBox.KeyDown += (sender, e) =>
             {
@@ -161,6 +162,16 @@ namespace TrueNASLocker.UI
             _datasetListView.Items.Clear();
         }
 
+        private void Refresh_Click()
+        {
+            if (_client == null)
+                return;
+
+            this.Enabled = false;
+            RefreshListView();
+            this.Enabled = true;
+        }
+
         private void ListView_Click()
         {
             if (_client == null)
@@ -199,6 +210,7 @@ namespace TrueNASLocker.UI
             if (passwordA != passwordB)
             {
                 MessageBoxEx.Show(this, "Passwords do not match", "Invalid");
+                this.Enabled = true;
                 return;
             }
 

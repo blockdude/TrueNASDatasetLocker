@@ -63,6 +63,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TrueNAS Locker";
             Load += LockerForm_Load;
+            FormClosing += LockerForm_Closing;
             ResumeLayout(false);
         }
 
