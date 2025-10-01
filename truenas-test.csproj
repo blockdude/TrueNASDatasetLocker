@@ -9,4 +9,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="api_client\**" />
+    <Compile Remove="env\**" />
+    <Compile Remove="extern\**" />
+    <EmbeddedResource Remove="api_client\**" />
+    <EmbeddedResource Remove="env\**" />
+    <EmbeddedResource Remove="extern\**" />
+    <None Remove="api_client\**" />
+    <None Remove="env\**" />
+    <None Remove="extern\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonRpcClient" Version="5.2.1" />
+  </ItemGroup>
+
 </Project>

@@ -2,13 +2,13 @@
 {
     public class FlowLayoutPanelEx : FlowLayoutPanel
     {
-        private bool _centerVerical = false;
+        private bool _centerVertical = false;
         private bool _centerHorizontal = false;
 
         public bool CenterVertical
         {
-            get => _centerVerical;
-            set => _centerVerical = value;
+            get => _centerVertical;
+            set => _centerVertical = value;
         }
 
         public bool CenterHorizontal

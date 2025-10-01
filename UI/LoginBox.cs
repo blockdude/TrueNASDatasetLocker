@@ -26,12 +26,11 @@
         public LoginBox()
         {
             InitializeComponent();
-            this._showPasswordCheckBox.CheckedChanged += OnPasswordCheckChange;
-        }
-
-        private void OnPasswordCheckChange(object? sender, EventArgs e)
-        {
-            _passwordTextBox.PasswordChar = _showPasswordCheckBox.Checked ? '\0' : '*';
+            this._showPasswordCheckBox.CheckedChanged +=
+                (object? sender, EventArgs e) =>
+                {
+                    _passwordTextBox.PasswordChar = _showPasswordCheckBox.Checked ? '\0' : '*';
+                };
         }
     }
 }

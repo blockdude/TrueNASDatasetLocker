@@ -33,8 +33,8 @@
             _widthGauge = new WidthGauge();
             _passwordLabel = new Label();
             _passwordTextBox = new TextBox();
-            _unlockButton = new Button();
             _showPasswordCheckBox = new CheckBox();
+            _unlockButton = new Button();
             _groupBox.SuspendLayout();
             _flowLayout.SuspendLayout();
             SuspendLayout();
@@ -57,8 +57,8 @@
             _flowLayout.Controls.Add(_widthGauge);
             _flowLayout.Controls.Add(_passwordLabel);
             _flowLayout.Controls.Add(_passwordTextBox);
-            _flowLayout.Controls.Add(_unlockButton);
             _flowLayout.Controls.Add(_showPasswordCheckBox);
+            _flowLayout.Controls.Add(_unlockButton);
             _flowLayout.Dock = DockStyle.Fill;
             _flowLayout.FlowDirection = FlowDirection.TopDown;
             _flowLayout.Location = new Point(3, 19);
@@ -92,31 +92,32 @@
             _passwordTextBox.Dock = DockStyle.Fill;
             _passwordTextBox.Location = new Point(3, 73);
             _passwordTextBox.Name = "_passwordTextBox";
+            _passwordTextBox.PasswordChar = '*';
             _passwordTextBox.Size = new Size(147, 23);
             _passwordTextBox.TabIndex = 4;
             _passwordTextBox.Tag = "";
             _passwordTextBox.TextAlign = HorizontalAlignment.Center;
             // 
-            // _unlockButton
-            // 
-            _unlockButton.Dock = DockStyle.Fill;
-            _unlockButton.Location = new Point(3, 102);
-            _unlockButton.Name = "_unlockButton";
-            _unlockButton.Size = new Size(147, 23);
-            _unlockButton.TabIndex = 1;
-            _unlockButton.Text = "Unlock";
-            _unlockButton.UseVisualStyleBackColor = true;
-            // 
             // _showPasswordCheckBox
             // 
             _showPasswordCheckBox.Anchor = AnchorStyles.Top;
             _showPasswordCheckBox.AutoSize = true;
-            _showPasswordCheckBox.Location = new Point(23, 131);
+            _showPasswordCheckBox.Location = new Point(23, 102);
             _showPasswordCheckBox.Name = "_showPasswordCheckBox";
             _showPasswordCheckBox.Size = new Size(107, 19);
             _showPasswordCheckBox.TabIndex = 5;
             _showPasswordCheckBox.Text = "show password";
             _showPasswordCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // _unlockButton
+            // 
+            _unlockButton.Dock = DockStyle.Fill;
+            _unlockButton.Location = new Point(3, 127);
+            _unlockButton.Name = "_unlockButton";
+            _unlockButton.Size = new Size(147, 23);
+            _unlockButton.TabIndex = 1;
+            _unlockButton.Text = "Unlock";
+            _unlockButton.UseVisualStyleBackColor = true;
             // 
             // DatasetUnlock
             // 
