@@ -258,7 +258,6 @@ namespace TrueNASLocker.UI
                 _client.LockDataset(dataset);
             }
 
-            // fix Client.LockDataset so i can remove this thread sleep
             Thread.Sleep(1000);
             RefreshListView();
             RefreshState();

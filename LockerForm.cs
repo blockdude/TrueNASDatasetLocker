@@ -20,6 +20,7 @@ namespace TrueNASLocker
 
         private void LockerForm_Load(object sender, EventArgs e)
         {
+            this.Text = "Locker_" + Program.VERSION;
             _datasetViewer.LogoutClick += (sernder, e) => Logout_Click();
             _loginBox.LoginClick += (sender, e) => Login_Click();
             _loginBox.KeyDown += (sender, e) =>

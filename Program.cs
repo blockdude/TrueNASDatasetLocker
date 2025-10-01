@@ -1,11 +1,9 @@
-
-using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
-
 namespace TrueNASLocker
 {
     internal static class Program
     {
+        public static readonly string VERSION = "v20251001_1458";
+
         [STAThread]
         static void Main()
         {
