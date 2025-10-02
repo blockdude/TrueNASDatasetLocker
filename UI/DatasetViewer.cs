@@ -169,6 +169,7 @@ namespace TrueNASLocker.UI
 
             this.Enabled = false;
             RefreshListView();
+            RefreshState();
             this.Enabled = true;
         }
 
@@ -248,26 +249,10 @@ namespace TrueNASLocker.UI
                 return;
             }
 
-            List<string> failed = new List<string>();
-            foreach (ListViewItem item in _datasetListView.SelectedItems)
+            DatasetWork("Locked", "Failed to change password for:", (datasets) =>
             {
-                if (item.SubItems[1].Text == "Locked")
-                    continue;
-
-                string dataset = _storageBase + item.SubItems[0].Text;
-                if (!_client.ChangeDatasetPassword(dataset, passwordA))
-                {
-                    failed.Add(item.SubItems[0].Text);
-                }
-            }
-
-            if (failed.Count > 0)
-            {
-                string failedMessage = "";
-                failed.ForEach(dataset => failedMessage += "\n" + dataset);
-
-                MessageBox.Show(this, "Failed to change password for:" + failedMessage, "Warning");
-            }
+                return _client.ChangeDatasetPassword(datasets, passwordA);
+            });
 
             _changePasswordBox.Password = "";
             _changePasswordBox.ConfirmPassword = "";

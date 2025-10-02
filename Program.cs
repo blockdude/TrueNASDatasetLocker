@@ -2,7 +2,7 @@ namespace TrueNASLocker
 {
     internal static class Program
     {
-        public static readonly string VERSION = "v20251001_1458";
+        public static readonly string VERSION = "v20251001_2055";
 
         [STAThread]
         static void Main()

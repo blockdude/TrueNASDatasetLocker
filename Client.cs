@@ -227,23 +227,17 @@ namespace TrueNASLocker
             });
         }
 
-        public bool ChangeDatasetPassword(string dataset, string password)
+        public List<string> ChangeDatasetPassword(List<string> datasets, string password)
         {
-            if (!_connected || !_loggedin)
-                return false;
-
-            Dictionary<string, string> param = new Dictionary<string, string>
+            return RunDatasetJob(datasets, (dataset) =>
             {
-                { "passphrase", password }
-            };
+                Dictionary<string, string> param = new Dictionary<string, string>
+                {
+                    { "passphrase", password }
+                };
 
-            object? response = Task.Run(() => Call("pool.dataset.change_key", new List<object> { dataset, param })).Result;
-
-            if (response == null)
-                return false;
-
-            int jobId = (int)(Int64)response;
-            return JobWait(new List<int> { jobId }).Count == 0;
+                return Task.Run(() => Call("pool.dataset.change_key", new List<object> { dataset, param })).Result;
+            });
         }
 
         public List<DatasetItem> QueryDatasets()
