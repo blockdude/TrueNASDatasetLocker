@@ -201,8 +201,6 @@ namespace TrueNASLocker.UI
 
         private void DatasetWork(string filter, string message, Func<List<string>, List<string>> callWork)
         {
-            this.Enabled = false;
-
             List<string> datasets = new List<string>();
             foreach (ListViewItem item in _datasetListView.SelectedItems)
             {
@@ -220,10 +218,6 @@ namespace TrueNASLocker.UI
                 failed.ForEach(dataset => failedMessage += "\n" + dataset);
                 MessageBoxEx.Show(this, message + failedMessage, "Warning");
             }
-
-            RefreshListView();
-            RefreshState();
-            this.Enabled = true;
         }
 
         private void ConfirmChangePassword_Click()
@@ -265,10 +259,15 @@ namespace TrueNASLocker.UI
             if (_client == null)
                 return;
 
+            this.Enabled = false;
             DatasetWork("Locked", "Failed to lock dataset for:", (datasets) =>
             {
                 return _client.LockDataset(datasets);
             });
+
+            RefreshListView();
+            RefreshState();
+            this.Enabled = true;
         }
 
         private void UnlockDataset_Click()
@@ -276,12 +275,16 @@ namespace TrueNASLocker.UI
             if (_client == null)
                 return;
 
+            this.Enabled = false;
             DatasetWork("Unlocked", "Failed to unlock dataset for:", (datasets) =>
             {
                 return _client.UnlockDataset(datasets, _unlockBox.Password);
             });
 
             _unlockBox.Password = "";
+            RefreshListView();
+            RefreshState();
+            this.Enabled = true;
         }
     }
 }
