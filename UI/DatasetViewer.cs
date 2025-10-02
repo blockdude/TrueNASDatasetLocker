@@ -198,6 +198,33 @@ namespace TrueNASLocker.UI
             _state = State.LOCK;
         }
 
+        private void DatasetWork(string filter, string message, Func<List<string>, List<string>> callWork)
+        {
+            this.Enabled = false;
+
+            List<string> datasets = new List<string>();
+            foreach (ListViewItem item in _datasetListView.SelectedItems)
+            {
+                if (item.SubItems[1].Text == filter)
+                    continue;
+
+                string dataset = _storageBase + item.SubItems[0].Text;
+                datasets.Add(dataset);
+            }
+
+            List<string> failed = callWork.Invoke(datasets);
+            if (failed.Count > 0)
+            {
+                string failedMessage = "";
+                failed.ForEach(dataset => failedMessage += "\n" + dataset);
+                MessageBoxEx.Show(this, message + failedMessage, "Warning");
+            }
+
+            RefreshListView();
+            RefreshState();
+            this.Enabled = true;
+        }
+
         private void ConfirmChangePassword_Click()
         {
             if (_client == null)
@@ -237,8 +264,7 @@ namespace TrueNASLocker.UI
             if (failed.Count > 0)
             {
                 string failedMessage = "";
-                foreach (string dataset in failed)
-                    failedMessage += "\n" + dataset;
+                failed.ForEach(dataset => failedMessage += "\n" + dataset);
 
                 MessageBox.Show(this, "Failed to change password for:" + failedMessage, "Warning");
             }
@@ -254,20 +280,10 @@ namespace TrueNASLocker.UI
             if (_client == null)
                 return;
 
-            this.Enabled = false;
-
-            foreach (ListViewItem item in _datasetListView.SelectedItems)
+            DatasetWork("Locked", "Failed to lock dataset for:", (datasets) =>
             {
-                if (item.SubItems[1].Text == "Locked")
-                    continue;
-
-                string dataset = _storageBase + item.SubItems[0].Text;
-                _client.LockDataset(dataset);
-            }
-
-            RefreshListView();
-            RefreshState();
-            this.Enabled = true;
+                return _client.LockDataset(datasets);
+            });
         }
 
         private void UnlockDataset_Click()
@@ -275,23 +291,12 @@ namespace TrueNASLocker.UI
             if (_client == null)
                 return;
 
-            this.Enabled = false;
-
-            foreach (ListViewItem item in _datasetListView.SelectedItems)
+            DatasetWork("Unlocked", "Failed to unlock dataset for:", (datasets) =>
             {
-                if (item.SubItems[1].Text == "Unlocked")
-                    continue;
-
-                string dataset = _storageBase + item.SubItems[0].Text;
-                string password = _unlockBox.Password;
-                _client.UnlockDataset(dataset, password);
-            }
+                return _client.UnlockDataset(datasets, _unlockBox.Password);
+            });
 
             _unlockBox.Password = "";
-            Thread.Sleep(1000);
-            RefreshListView();
-            RefreshState();
-            this.Enabled = true;
         }
     }
 }

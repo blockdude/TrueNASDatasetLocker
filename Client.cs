@@ -108,84 +108,123 @@ namespace TrueNASLocker
             return status;
         }
 
-        private bool JobWait(int jobId)
+        private List<int> JobWait(List<int> jobIds)
         {
-            string state = "RUNNING";
-
-            List<List<object>> filter = new List<List<object>>
+            List<int> currentJobs = new List<int>(jobIds);
+            List<int> failedJobs = new List<int>();
+            while (currentJobs.Count > 0)
             {
-                new List<object> { "id", "=", jobId }
-            };
-
-            while (state == "RUNNING")
-            {
+                // create filter from currentJobs
+                List<object> idFilter = new List<object>();
+                currentJobs.ForEach(id => idFilter.Add(new List<object> { "id", "=", id }));
+                List<object> filter = new List<object> { new List<object> { "OR", idFilter } };
                 object? jobsResponse = Task.Run(() => Call("core.get_jobs", new List<object> { filter })).Result;
 
                 if (jobsResponse == null)
                 {
-                    state = "FAILED";
+                    failedJobs.AddRange(currentJobs);
                     break;
                 }
 
-                JsonNode? jsonNode = JsonNode.Parse(jobsResponse.ToString());
-                if (jsonNode == null)
+                JsonNode? jobList = JsonNode.Parse(jobsResponse.ToString());
+                if (jobList == null)
                 {
-                    state = "FAILED";
+                    failedJobs.AddRange(currentJobs);
                     break;
                 }
 
-                string? jobState = jsonNode?[0]?["state"]?.ToString();
-                state = jobState == null ? "FAILED" : jobState;
+                foreach (JsonNode? job in jobList.AsArray())
+                {
+                    if (job == null)
+                        continue;
+
+                    string? state = job["state"]?.ToString();
+                    string? jobId = job["id"]?.ToString();
+
+                    if (state == null || jobId == null)
+                        continue;
+
+                    if (state != "RUNNING" && state != "WAITING")
+                    {
+                        //Debug.WriteLine("Job " + jobId + " finished with status " + state);
+                        currentJobs.Remove(int.Parse(jobId));
+
+                        if (state != "SUCCESS")
+                            failedJobs.Add(int.Parse(jobId));
+                    }
+                }
 
                 Thread.Sleep(100);
             }
 
-            if (state == "SUCCESS")
-                return true;
-
-            return false;
+            return failedJobs;
         }
 
-        public bool LockDataset(string dataset)
+        private List<string> RunDatasetJob(List<string> datasets, Func<string, object?> callJob)
         {
+            List<string> failed = new List<string>();
             if (!_connected || !_loggedin)
-                return false;
-
-            object? response = Task.Run(() => Call("pool.dataset.lock", new List<string> { dataset })).Result;
-
-            if (response == null)
-                return false;
-
-            int jobId = (int)(Int64)response;
-            return JobWait(jobId);
-        }
-
-        public bool UnlockDataset(string dataset, string password)
-        {
-            if (!_connected || !_loggedin)
-                return false;
-
-            Dictionary<string, List<Dictionary<string, string>>> param = new Dictionary<string, List<Dictionary<string, string>>>
             {
+                failed.AddRange(datasets);
+                return failed;
+            }
+
+            List<int> jobs = new List<int>();
+            Dictionary<int, string> datasetMap = new Dictionary<int, string>();
+            foreach (string dataset in datasets)
+            {
+                object? response = callJob.Invoke(dataset);
+
+                if (response == null)
                 {
-                    "datasets", new List<Dictionary<string, string>>
+                    failed.Add(dataset);
+                    continue;
+                }
+
+                int jobId = (int)(Int64)response;
+                jobs.Add(jobId);
+                datasetMap.Add(jobId, dataset);
+            }
+
+            // create list of datasets that failed to lock
+            List<int> failedJobs = JobWait(jobs);
+            foreach (int jobId in failedJobs)
+            {
+                string dataset = datasetMap[jobId];
+                failed.Add(dataset);
+            }
+
+            return failed;
+        }
+
+        public List<string> LockDataset(List<string> datasets)
+        {
+            return RunDatasetJob(datasets, (dataset) =>
+            {
+                return Task.Run(() => Call("pool.dataset.lock", new List<string> { dataset })).Result;
+            });
+        }
+
+        public List<string> UnlockDataset(List<string> datasets, string password)
+        {
+            return RunDatasetJob(datasets, (dataset) =>
+            {
+                Dictionary<object, object> param = new Dictionary<object, object>
+                {
                     {
-                        new Dictionary<string, string>
+                        "datasets", new List<Dictionary<string, string>>
                         {
-                            { "name", dataset },
-                            { "passphrase", password }
+                            new Dictionary<string, string>
+                            {
+                                { "name", dataset },
+                                { "passphrase", password }
+                            }
                         }
                     }
-                }
-            };
+                };
 
-            object? response = Task.Run(() => Call("pool.dataset.unlock", new List<object> { dataset, param })).Result;
-
-            if (response == null)
-                return false;
-
-            int jobId = (int)(Int64)response;
-            return JobWait(jobId);
+                return Task.Run(() => Call("pool.dataset.unlock", new List<object> { dataset, param })).Result;
+            });
         }
 
         public bool ChangeDatasetPassword(string dataset, string password)
@@ -204,7 +243,7 @@ namespace TrueNASLocker
                 return false;
 
             int jobId = (int)(Int64)response;
-            return JobWait(jobId);
+            return JobWait(new List<int> { jobId }).Count == 0;
         }
 
         public List<DatasetItem> QueryDatasets()
