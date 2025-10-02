@@ -214,6 +214,13 @@ namespace TrueNASLocker.UI
                 return;
             }
 
+            if (passwordA.Length < 8)
+            {
+                MessageBoxEx.Show(this, "Password must be 8 characters or more", "Invalid");
+                this.Enabled = true;
+                return;
+            }
+
             List<string> failed = new List<string>();
             foreach (ListViewItem item in _datasetListView.SelectedItems)
             {
@@ -258,7 +265,6 @@ namespace TrueNASLocker.UI
                 _client.LockDataset(dataset);
             }
 
-            Thread.Sleep(1000);
             RefreshListView();
             RefreshState();
             this.Enabled = true;

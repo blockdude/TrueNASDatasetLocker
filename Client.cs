@@ -1,4 +1,5 @@
 ﻿using JsonRpcClient.Clients;
+using JsonRpcClient.Objects;
 using Newtonsoft.Json;
 using System;
 using System.Data;
@@ -107,6 +108,44 @@ namespace TrueNASLocker
             return status;
         }
 
+        private bool JobWait(int jobId)
+        {
+            string state = "RUNNING";
+
+            List<List<object>> filter = new List<List<object>>
+            {
+                new List<object> { "id", "=", jobId }
+            };
+
+            while (state == "RUNNING")
+            {
+                object? jobsResponse = Task.Run(() => Call("core.get_jobs", new List<object> { filter })).Result;
+
+                if (jobsResponse == null)
+                {
+                    state = "FAILED";
+                    break;
+                }
+
+                JsonNode? jsonNode = JsonNode.Parse(jobsResponse.ToString());
+                if (jsonNode == null)
+                {
+                    state = "FAILED";
+                    break;
+                }
+
+                string? jobState = jsonNode?[0]?["state"]?.ToString();
+                state = jobState == null ? "FAILED" : jobState;
+
+                Thread.Sleep(100);
+            }
+
+            if (state == "SUCCESS")
+                return true;
+
+            return false;
+        }
+
         public bool LockDataset(string dataset)
         {
             if (!_connected || !_loggedin)
@@ -117,10 +156,8 @@ namespace TrueNASLocker
             if (response == null)
                 return false;
 
-            // note: the response is the id for the job and to get the status and result of the lock job
-            // we need to make another call to query the job and get the status.
-
-            return true;
+            int jobId = (int)(Int64)response;
+            return JobWait(jobId);
         }
 
         public bool UnlockDataset(string dataset, string password)
@@ -147,7 +184,8 @@ namespace TrueNASLocker
             if (response == null)
                 return false;
 
-            return true;
+            int jobId = (int)(Int64)response;
+            return JobWait(jobId);
         }
 
         public bool ChangeDatasetPassword(string dataset, string password)
@@ -165,7 +203,8 @@ namespace TrueNASLocker
             if (response == null)
                 return false;
 
-            return true;
+            int jobId = (int)(Int64)response;
+            return JobWait(jobId);
         }
 
         public List<DatasetItem> QueryDatasets()
