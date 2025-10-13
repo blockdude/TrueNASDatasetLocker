@@ -112,6 +112,8 @@ namespace TrueNASLocker
         {
             List<int> currentJobs = new List<int>(jobIds);
             List<int> failedJobs = new List<int>();
+
+            // update this so it does not potentially run forever
             while (currentJobs.Count > 0)
             {
                 // create filter from currentJobs
