@@ -1,15 +1,7 @@
 ﻿using JsonRpcClient.Clients;
-using JsonRpcClient.Objects;
 using Newtonsoft.Json;
-using System;
-using System.Data;
 using System.Diagnostics;
-using System.Net.WebSockets;
-using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using TrueNASLocker.UI;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TrueNASLocker
 {

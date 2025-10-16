@@ -1,4 +1,4 @@
-﻿namespace TrueNASLocker
+﻿namespace TrueNASLocker.UI
 {
     partial class LockerForm
     {

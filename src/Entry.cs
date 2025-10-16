@@ -1,6 +1,7 @@
+using TrueNASLocker.UI;
 namespace TrueNASLocker
 {
-    internal static class Program
+    internal static class Entry
     {
         public static readonly string VERSION = "v20251001_2112";
 
