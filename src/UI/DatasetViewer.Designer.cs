@@ -81,6 +81,7 @@
             // _datasetControlsSplit
             // 
             _datasetControlsSplit.Dock = DockStyle.Fill;
+            _datasetControlsSplit.FixedPanel = FixedPanel.Panel1;
             _datasetControlsSplit.IsSplitterFixed = true;
             _datasetControlsSplit.Location = new Point(0, 0);
             _datasetControlsSplit.Name = "_datasetControlsSplit";
@@ -137,6 +138,7 @@
             // 
             _infoSplitter.Dock = DockStyle.Fill;
             _infoSplitter.FixedPanel = FixedPanel.Panel2;
+            _infoSplitter.IsSplitterFixed = true;
             _infoSplitter.Location = new Point(0, 0);
             _infoSplitter.Name = "_infoSplitter";
             _infoSplitter.Orientation = Orientation.Horizontal;
@@ -152,7 +154,7 @@
             // 
             _infoSplitter.Panel2.Controls.Add(_userBox);
             _infoSplitter.Size = new Size(134, 357);
-            _infoSplitter.SplitterDistance = 214;
+            _infoSplitter.SplitterDistance = 203;
             _infoSplitter.TabIndex = 16;
             _infoSplitter.TabStop = false;
             // 
@@ -162,7 +164,7 @@
             _unlockBox.Location = new Point(0, 0);
             _unlockBox.Name = "_unlockBox";
             _unlockBox.Password = "";
-            _unlockBox.Size = new Size(134, 214);
+            _unlockBox.Size = new Size(134, 203);
             _unlockBox.TabIndex = 10;
             // 
             // _editBox
@@ -170,7 +172,7 @@
             _editBox.Dock = DockStyle.Fill;
             _editBox.Location = new Point(0, 0);
             _editBox.Name = "_editBox";
-            _editBox.Size = new Size(134, 214);
+            _editBox.Size = new Size(134, 203);
             _editBox.TabIndex = 15;
             // 
             // _infoBox
@@ -178,7 +180,7 @@
             _infoBox.Dock = DockStyle.Fill;
             _infoBox.Location = new Point(0, 0);
             _infoBox.Name = "_infoBox";
-            _infoBox.Size = new Size(134, 214);
+            _infoBox.Size = new Size(134, 203);
             _infoBox.TabIndex = 12;
             // 
             // _changePasswordBox
@@ -188,7 +190,7 @@
             _changePasswordBox.Location = new Point(0, 0);
             _changePasswordBox.Name = "_changePasswordBox";
             _changePasswordBox.Password = "";
-            _changePasswordBox.Size = new Size(134, 214);
+            _changePasswordBox.Size = new Size(134, 203);
             _changePasswordBox.TabIndex = 13;
             // 
             // _userBox
@@ -197,7 +199,7 @@
             _userBox.Hostname = "localhost";
             _userBox.Location = new Point(0, 0);
             _userBox.Name = "_userBox";
-            _userBox.Size = new Size(134, 139);
+            _userBox.Size = new Size(134, 150);
             _userBox.TabIndex = 20;
             _userBox.Username = "user";
             // 

@@ -28,58 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            _datasetViewer = new DatasetViewer();
+            Settings settings1 = new Settings();
             _loginBox = new LoginBox();
             _settingsBox = new SettingsBox();
+            _versionLabel = new Label();
+            panel1 = new Panel();
+            _datasetViewer = new DatasetViewer();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // _datasetViewer
-            // 
-            _datasetViewer.Location = new Point(12, 12);
-            _datasetViewer.Name = "_datasetViewer";
-            _datasetViewer.Padding = new Padding(3);
-            _datasetViewer.Size = new Size(313, 357);
-            _datasetViewer.TabIndex = 0;
-            _datasetViewer.Visible = false;
             // 
             // _loginBox
             // 
             _loginBox.Hostname = "";
-            _loginBox.Location = new Point(15, 9);
+            _loginBox.Location = new Point(0, -38);
             _loginBox.Margin = new Padding(0);
             _loginBox.Name = "_loginBox";
             _loginBox.Password = "";
-            _loginBox.Size = new Size(310, 360);
+            _loginBox.Size = new Size(310, 359);
             _loginBox.TabIndex = 1;
             _loginBox.Username = "";
             // 
             // _settingsBox
             // 
-            _settingsBox.Location = new Point(15, 12);
+            _settingsBox.Location = new Point(0, -35);
             _settingsBox.Name = "_settingsBox";
-            _settingsBox.Size = new Size(310, 357);
+            settings1.Hostname = null;
+            settings1.Path = "";
+            settings1.Port = 0;
+            settings1.SaveHostname = false;
+            settings1.SaveUsername = false;
+            settings1.Username = null;
+            settings1.WSS = false;
+            _settingsBox.Settings = settings1;
+            _settingsBox.Size = new Size(310, 356);
             _settingsBox.TabIndex = 2;
+            // 
+            // _versionLabel
+            // 
+            _versionLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            _versionLabel.AutoSize = true;
+            _versionLabel.Location = new Point(12, 357);
+            _versionLabel.Name = "_versionLabel";
+            _versionLabel.Size = new Size(45, 15);
+            _versionLabel.TabIndex = 3;
+            _versionLabel.Text = "Version";
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(_datasetViewer);
+            panel1.Controls.Add(_loginBox);
+            panel1.Controls.Add(_settingsBox);
+            panel1.Location = new Point(12, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(310, 342);
+            panel1.TabIndex = 4;
+            // 
+            // _datasetViewer
+            // 
+            _datasetViewer.Location = new Point(-3, -35);
+            _datasetViewer.Name = "_datasetViewer";
+            _datasetViewer.Padding = new Padding(3);
+            _datasetViewer.Size = new Size(313, 356);
+            _datasetViewer.TabIndex = 0;
+            _datasetViewer.Visible = false;
             // 
             // LockerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(334, 381);
-            Controls.Add(_datasetViewer);
-            Controls.Add(_settingsBox);
-            Controls.Add(_loginBox);
+            Controls.Add(panel1);
+            Controls.Add(_versionLabel);
             Name = "LockerForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "TrueNAS Locker";
+            Text = "TrueNAS Dataset Locker";
             FormClosing += LockerForm_Closing;
             Load += LockerForm_Load;
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private DatasetViewer _datasetViewer;
         private LoginBox _loginBox;
         private SettingsBox _settingsBox;
+        private Label _versionLabel;
+        private Panel panel1;
+        private DatasetViewer _datasetViewer;
     }
 }

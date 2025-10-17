@@ -41,7 +41,15 @@
             _wssCheckBox = new CheckBox();
             _saveHostCheckBox = new CheckBox();
             _saveUserCheckBox = new CheckBox();
+            _currentVersionPanel = new Panel();
+            _currentVersionTextBox = new TextBox();
+            textBox1 = new TextBox();
+            numericUpDown2 = new NumericUpDown();
             _currentVersionLabel = new Label();
+            _latestVersionPanel = new Panel();
+            _latestVersionTextBox = new TextBox();
+            textBox2 = new TextBox();
+            numericUpDown3 = new NumericUpDown();
             _latestVersionLabel = new Label();
             _updateButton = new Button();
             _applyButton = new Button();
@@ -52,6 +60,10 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             _portPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)_portNumBox).BeginInit();
+            _currentVersionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            _latestVersionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             SuspendLayout();
             // 
             // _groupBox
@@ -75,8 +87,8 @@
             _flowLayout.Controls.Add(_wssCheckBox);
             _flowLayout.Controls.Add(_saveHostCheckBox);
             _flowLayout.Controls.Add(_saveUserCheckBox);
-            _flowLayout.Controls.Add(_currentVersionLabel);
-            _flowLayout.Controls.Add(_latestVersionLabel);
+            _flowLayout.Controls.Add(_currentVersionPanel);
+            _flowLayout.Controls.Add(_latestVersionPanel);
             _flowLayout.Controls.Add(_updateButton);
             _flowLayout.Controls.Add(_applyButton);
             _flowLayout.Controls.Add(_cancelButton);
@@ -84,13 +96,13 @@
             _flowLayout.FlowDirection = FlowDirection.TopDown;
             _flowLayout.Location = new Point(3, 19);
             _flowLayout.Name = "_flowLayout";
-            _flowLayout.Padding = new Padding(0, 32, 0, 0);
+            _flowLayout.Padding = new Padding(0, 18, 0, 0);
             _flowLayout.Size = new Size(249, 315);
             _flowLayout.TabIndex = 6;
             // 
             // _widthGauge
             // 
-            _widthGauge.Location = new Point(0, 32);
+            _widthGauge.Location = new Point(0, 18);
             _widthGauge.Margin = new Padding(0);
             _widthGauge.Name = "_widthGauge";
             _widthGauge.Size = new Size(249, 0);
@@ -102,7 +114,7 @@
             _pathPanel.Controls.Add(numericUpDown1);
             _pathPanel.Controls.Add(_pathLabel);
             _pathPanel.Dock = DockStyle.Fill;
-            _pathPanel.Location = new Point(0, 35);
+            _pathPanel.Location = new Point(0, 21);
             _pathPanel.Margin = new Padding(0, 3, 0, 3);
             _pathPanel.Name = "_pathPanel";
             _pathPanel.Size = new Size(249, 23);
@@ -144,7 +156,7 @@
             _portPanel.Controls.Add(_portNumBox);
             _portPanel.Controls.Add(_portLabel);
             _portPanel.Dock = DockStyle.Fill;
-            _portPanel.Location = new Point(0, 64);
+            _portPanel.Location = new Point(0, 50);
             _portPanel.Margin = new Padding(0, 3, 0, 3);
             _portPanel.Name = "_portPanel";
             _portPanel.Size = new Size(249, 23);
@@ -175,7 +187,7 @@
             // _wssCheckBox
             // 
             _wssCheckBox.Dock = DockStyle.Fill;
-            _wssCheckBox.Location = new Point(3, 93);
+            _wssCheckBox.Location = new Point(3, 79);
             _wssCheckBox.Name = "_wssCheckBox";
             _wssCheckBox.RightToLeft = RightToLeft.No;
             _wssCheckBox.Size = new Size(243, 19);
@@ -186,7 +198,7 @@
             // _saveHostCheckBox
             // 
             _saveHostCheckBox.Dock = DockStyle.Fill;
-            _saveHostCheckBox.Location = new Point(3, 118);
+            _saveHostCheckBox.Location = new Point(3, 104);
             _saveHostCheckBox.Name = "_saveHostCheckBox";
             _saveHostCheckBox.Size = new Size(243, 19);
             _saveHostCheckBox.TabIndex = 19;
@@ -196,37 +208,130 @@
             // _saveUserCheckBox
             // 
             _saveUserCheckBox.Dock = DockStyle.Fill;
-            _saveUserCheckBox.Location = new Point(3, 143);
+            _saveUserCheckBox.Location = new Point(3, 129);
             _saveUserCheckBox.Name = "_saveUserCheckBox";
             _saveUserCheckBox.Size = new Size(243, 19);
             _saveUserCheckBox.TabIndex = 21;
             _saveUserCheckBox.Text = "Save Username";
             _saveUserCheckBox.UseVisualStyleBackColor = true;
             // 
+            // _currentVersionPanel
+            // 
+            _currentVersionPanel.Controls.Add(_currentVersionTextBox);
+            _currentVersionPanel.Controls.Add(textBox1);
+            _currentVersionPanel.Controls.Add(numericUpDown2);
+            _currentVersionPanel.Controls.Add(_currentVersionLabel);
+            _currentVersionPanel.Dock = DockStyle.Fill;
+            _currentVersionPanel.Location = new Point(0, 154);
+            _currentVersionPanel.Margin = new Padding(0, 3, 0, 3);
+            _currentVersionPanel.Name = "_currentVersionPanel";
+            _currentVersionPanel.Size = new Size(249, 23);
+            _currentVersionPanel.TabIndex = 28;
+            // 
+            // _currentVersionTextBox
+            // 
+            _currentVersionTextBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            _currentVersionTextBox.Enabled = false;
+            _currentVersionTextBox.Location = new Point(91, 0);
+            _currentVersionTextBox.Margin = new Padding(0);
+            _currentVersionTextBox.Name = "_currentVersionTextBox";
+            _currentVersionTextBox.ReadOnly = true;
+            _currentVersionTextBox.Size = new Size(155, 23);
+            _currentVersionTextBox.TabIndex = 22;
+            _currentVersionTextBox.TabStop = false;
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Location = new Point(32, -39);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(263, 23);
+            textBox1.TabIndex = 21;
+            textBox1.Text = "pool00/shares";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numericUpDown2.Location = new Point(32, -78);
+            numericUpDown2.Margin = new Padding(0);
+            numericUpDown2.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(312, 23);
+            numericUpDown2.TabIndex = 20;
+            numericUpDown2.Value = new decimal(new int[] { 80, 0, 0, 0 });
+            // 
             // _currentVersionLabel
             // 
             _currentVersionLabel.AutoSize = true;
-            _currentVersionLabel.Dock = DockStyle.Fill;
-            _currentVersionLabel.Location = new Point(3, 165);
+            _currentVersionLabel.Location = new Point(0, 3);
+            _currentVersionLabel.Margin = new Padding(0);
             _currentVersionLabel.Name = "_currentVersionLabel";
-            _currentVersionLabel.Size = new Size(243, 15);
-            _currentVersionLabel.TabIndex = 24;
+            _currentVersionLabel.Size = new Size(91, 15);
+            _currentVersionLabel.TabIndex = 19;
             _currentVersionLabel.Text = "Current Version:";
+            _currentVersionLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // _latestVersionPanel
+            // 
+            _latestVersionPanel.Controls.Add(_latestVersionTextBox);
+            _latestVersionPanel.Controls.Add(textBox2);
+            _latestVersionPanel.Controls.Add(numericUpDown3);
+            _latestVersionPanel.Controls.Add(_latestVersionLabel);
+            _latestVersionPanel.Dock = DockStyle.Fill;
+            _latestVersionPanel.Location = new Point(0, 183);
+            _latestVersionPanel.Margin = new Padding(0, 3, 0, 3);
+            _latestVersionPanel.Name = "_latestVersionPanel";
+            _latestVersionPanel.Size = new Size(249, 23);
+            _latestVersionPanel.TabIndex = 29;
+            // 
+            // _latestVersionTextBox
+            // 
+            _latestVersionTextBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            _latestVersionTextBox.Enabled = false;
+            _latestVersionTextBox.Location = new Point(91, 0);
+            _latestVersionTextBox.Margin = new Padding(0);
+            _latestVersionTextBox.Name = "_latestVersionTextBox";
+            _latestVersionTextBox.ReadOnly = true;
+            _latestVersionTextBox.Size = new Size(155, 23);
+            _latestVersionTextBox.TabIndex = 23;
+            _latestVersionTextBox.TabStop = false;
+            _latestVersionTextBox.Text = "Loading...";
+            // 
+            // textBox2
+            // 
+            textBox2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            textBox2.Location = new Point(32, -78);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(312, 23);
+            textBox2.TabIndex = 21;
+            textBox2.Text = "pool00/shares";
+            // 
+            // numericUpDown3
+            // 
+            numericUpDown3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numericUpDown3.Location = new Point(32, -117);
+            numericUpDown3.Margin = new Padding(0);
+            numericUpDown3.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
+            numericUpDown3.Name = "numericUpDown3";
+            numericUpDown3.Size = new Size(361, 23);
+            numericUpDown3.TabIndex = 20;
+            numericUpDown3.Value = new decimal(new int[] { 80, 0, 0, 0 });
             // 
             // _latestVersionLabel
             // 
             _latestVersionLabel.AutoSize = true;
-            _latestVersionLabel.Dock = DockStyle.Fill;
-            _latestVersionLabel.Location = new Point(3, 180);
+            _latestVersionLabel.Location = new Point(0, 3);
+            _latestVersionLabel.Margin = new Padding(0);
             _latestVersionLabel.Name = "_latestVersionLabel";
-            _latestVersionLabel.Size = new Size(243, 15);
-            _latestVersionLabel.TabIndex = 25;
+            _latestVersionLabel.Size = new Size(82, 15);
+            _latestVersionLabel.TabIndex = 19;
             _latestVersionLabel.Text = "Latest Version:";
+            _latestVersionLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // _updateButton
             // 
             _updateButton.Dock = DockStyle.Fill;
-            _updateButton.Location = new Point(3, 198);
+            _updateButton.Location = new Point(3, 212);
             _updateButton.Name = "_updateButton";
             _updateButton.Size = new Size(243, 23);
             _updateButton.TabIndex = 23;
@@ -236,7 +341,7 @@
             // _applyButton
             // 
             _applyButton.Dock = DockStyle.Fill;
-            _applyButton.Location = new Point(3, 227);
+            _applyButton.Location = new Point(3, 241);
             _applyButton.Name = "_applyButton";
             _applyButton.Size = new Size(243, 23);
             _applyButton.TabIndex = 15;
@@ -246,7 +351,7 @@
             // _cancelButton
             // 
             _cancelButton.Dock = DockStyle.Fill;
-            _cancelButton.Location = new Point(3, 256);
+            _cancelButton.Location = new Point(3, 270);
             _cancelButton.Name = "_cancelButton";
             _cancelButton.Size = new Size(243, 23);
             _cancelButton.TabIndex = 16;
@@ -262,13 +367,18 @@
             Size = new Size(255, 337);
             _groupBox.ResumeLayout(false);
             _flowLayout.ResumeLayout(false);
-            _flowLayout.PerformLayout();
             _pathPanel.ResumeLayout(false);
             _pathPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             _portPanel.ResumeLayout(false);
             _portPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)_portNumBox).EndInit();
+            _currentVersionPanel.ResumeLayout(false);
+            _currentVersionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            _latestVersionPanel.ResumeLayout(false);
+            _latestVersionPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ResumeLayout(false);
         }
 
@@ -277,8 +387,6 @@
         private GroupBox _groupBox;
         private TrueNASLocker.UI.FlowLayoutPanelEx _flowLayout;
         private TrueNASLocker.UI.WidthGauge _widthGauge;
-        private Label _currentVersionLabel;
-        private Label _latestVersionLabel;
         private Button _updateButton;
         private Button _applyButton;
         private Button _cancelButton;
@@ -292,5 +400,15 @@
         private NumericUpDown numericUpDown1;
         private Label _pathLabel;
         private TextBox _pathTextBox;
+        private Panel _currentVersionPanel;
+        private TextBox textBox1;
+        private NumericUpDown numericUpDown2;
+        private Label _currentVersionLabel;
+        private Panel _latestVersionPanel;
+        private TextBox textBox2;
+        private NumericUpDown numericUpDown3;
+        private Label _latestVersionLabel;
+        private TextBox _currentVersionTextBox;
+        private TextBox _latestVersionTextBox;
     }
 }

@@ -2,6 +2,13 @@
 {
     public partial class LoginBox : UserControl
     {
+        public enum InputType
+        {
+            HOSTNAME,
+            USERNAME,
+            PASSWORD
+        }
+
         public string Hostname
         {
             get => _hostTextBox.Text;
@@ -47,6 +54,13 @@
                 _userTextBox.KeyDown -= value;
                 _passwordTextBox.KeyDown -= value;
             }
+        }
+
+        public void InputFocus(InputType type)
+        {
+            if (type == InputType.HOSTNAME) _hostTextBox.Select();
+            if (type == InputType.USERNAME) _userTextBox.Select();
+            if (type == InputType.PASSWORD) _passwordTextBox.Select();
         }
 
         public LoginBox()

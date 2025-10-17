@@ -3,13 +3,13 @@ namespace TrueNASLocker
 {
     internal static class Entry
     {
-        public static readonly string VERSION = "v20251001_2112";
-
         [STAThread]
         static void Main()
         {
+            Global.LoadSettings();
             ApplicationConfiguration.Initialize();
             Application.Run(new LockerForm());
+            Global.SaveSettings(Global.Settings);
         }
     }
 }

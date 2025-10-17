@@ -6,7 +6,7 @@ namespace TrueNASLocker.UI
     public partial class DatasetViewer : UserControl
     {
         private Client? _client;
-        private static readonly string _storageBase = "pool00/shares/";
+        private static string _storageBase = "pool00/shares/";
 
         private enum State
         {
@@ -101,10 +101,11 @@ namespace TrueNASLocker.UI
             };
         }
 
-        public void SetClient(Client client, string hostname, string username)
+        public void SetClient(Client client, string hostname, string username, string basePath)
         {
             _userBox.Hostname = hostname;
             _userBox.Username = username;
+            _storageBase = basePath.EndsWith("/") ? basePath : basePath + "/";
             _client = client;
             RefreshListView();
         }
