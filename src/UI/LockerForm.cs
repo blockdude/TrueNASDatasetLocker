@@ -8,7 +8,8 @@ namespace TrueNASLocker.UI
         private enum State
         {
             LOGIN,
-            VIEW
+            VIEW,
+            SETTINGS
         }
 
         public LockerForm()
@@ -21,6 +22,7 @@ namespace TrueNASLocker.UI
             this.Text = "Locker_" + Entry.VERSION;
             _datasetViewer.LogoutClick += (sernder, e) => Logout_Click();
             _loginBox.LoginClick += (sender, e) => Login_Click();
+            _loginBox.SettingsClick += (sender, e) => Settings_Click();
             _loginBox.KeyDown += (sender, e) =>
             {
                 if (e.KeyCode == Keys.Enter)
@@ -37,6 +39,8 @@ namespace TrueNASLocker.UI
             _loginBox.Dock = DockStyle.Fill;
             _datasetViewer.BringToFront();
             _datasetViewer.Dock = DockStyle.Fill;
+            _settingsBox.BringToFront();
+            _settingsBox.Dock = DockStyle.Fill;
             SetState(State.LOGIN);
         }
 
@@ -75,6 +79,11 @@ namespace TrueNASLocker.UI
             SetState(State.LOGIN);
         }
 
+        private void Settings_Click()
+        {
+            SetState(State.SETTINGS);
+        }
+
         private void SetState(State state)
         {
             _state = state;
@@ -82,6 +91,8 @@ namespace TrueNASLocker.UI
             _loginBox.Enabled = false;
             _datasetViewer.Visible = false;
             _datasetViewer.Enabled = false;
+            _settingsBox.Visible = false;
+            _settingsBox.Enabled = false;
             switch (state)
             {
                 case State.LOGIN:
@@ -91,6 +102,10 @@ namespace TrueNASLocker.UI
                 case State.VIEW:
                     _datasetViewer.Visible = true;
                     _datasetViewer.Enabled = true;
+                    break;
+                case State.SETTINGS:
+                    _settingsBox.Visible = true;
+                    _settingsBox.Enabled = true;
                     break;
                 default:
                     break;

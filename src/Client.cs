@@ -38,10 +38,15 @@ namespace TrueNASLocker
         public bool Connected { get => _connected; }
         public bool Loggedin { get => _loggedin; }
 
+        public static Client? Connect(string uri, int timeout)
+        {
+            Client client = Task.Run(() => new Client(uri, timeout)).Result;
+            return client.Connected ? client : null;
+        }
+
         public static Client? Connect(string uri)
         {
-            Client client = Task.Run(() => new Client(uri)).Result;
-            return client.Connected ? client : null;
+            return Connect(uri, 5000);
         }
 
         public void Dispose()
@@ -49,13 +54,13 @@ namespace TrueNASLocker
             Task.Run(() => Close());
         }
 
-        private Client(string uri) : base(uri)
+        private Client(string uri, int timeout) : base(uri)
         {
             Task connect = Connect();
 
             try
             {
-                connect.Wait(5000);
+                connect.Wait(timeout);
             }
             catch (AggregateException ex)
             {
@@ -113,6 +118,7 @@ namespace TrueNASLocker
                 currentJobs.ForEach(id => idFilter.Add(new List<object> { "id", "=", id }));
                 List<object> filter = new List<object> { new List<object> { "OR", idFilter } };
                 object? jobsResponse = Task.Run(() => Call("core.get_jobs", new List<object> { filter })).Result;
+                Debug.WriteLine(jobsResponse);
 
                 if (jobsResponse == null)
                 {
@@ -134,13 +140,14 @@ namespace TrueNASLocker
 
                     string? state = job["state"]?.ToString();
                     string? jobId = job["id"]?.ToString();
+                    string? result = job["result"]?.ToString();
 
                     if (state == null || jobId == null)
                         continue;
 
                     if (state != "RUNNING" && state != "WAITING")
                     {
-                        //Debug.WriteLine("Job " + jobId + " finished with status " + state);
+                        //Debug.WriteLine("Job " + jobId + " result " + result);
                         currentJobs.Remove(int.Parse(jobId));
 
                         if (state != "SUCCESS")

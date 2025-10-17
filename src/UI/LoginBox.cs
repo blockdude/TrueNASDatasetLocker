@@ -26,6 +26,12 @@
             remove => _loginButton.Click -= value;
         }
 
+        public event EventHandler? SettingsClick
+        {
+            add => _settingsButton.Click += value;
+            remove => _settingsButton.Click -= value;
+        }
+
         public new event KeyEventHandler? KeyDown
         {
             add

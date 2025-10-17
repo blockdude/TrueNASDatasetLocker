@@ -28,29 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            _datasetViewer = new TrueNASLocker.UI.DatasetViewer();
-            _loginBox = new TrueNASLocker.UI.LoginBox();
+            _datasetViewer = new DatasetViewer();
+            _loginBox = new LoginBox();
+            _settingsBox = new SettingsBox();
             SuspendLayout();
             // 
             // _datasetViewer
             // 
-            _datasetViewer.Location = new Point(12, 9);
+            _datasetViewer.Location = new Point(12, 12);
             _datasetViewer.Name = "_datasetViewer";
             _datasetViewer.Padding = new Padding(3);
-            _datasetViewer.Size = new Size(182, 360);
+            _datasetViewer.Size = new Size(313, 357);
             _datasetViewer.TabIndex = 0;
             _datasetViewer.Visible = false;
             // 
             // _loginBox
             // 
             _loginBox.Hostname = "";
-            _loginBox.Location = new Point(197, 9);
+            _loginBox.Location = new Point(15, 9);
             _loginBox.Margin = new Padding(0);
             _loginBox.Name = "_loginBox";
             _loginBox.Password = "";
-            _loginBox.Size = new Size(128, 363);
+            _loginBox.Size = new Size(310, 360);
             _loginBox.TabIndex = 1;
             _loginBox.Username = "";
+            // 
+            // _settingsBox
+            // 
+            _settingsBox.Location = new Point(15, 12);
+            _settingsBox.Name = "_settingsBox";
+            _settingsBox.Size = new Size(310, 357);
+            _settingsBox.TabIndex = 2;
             // 
             // LockerForm
             // 
@@ -58,18 +66,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(334, 381);
             Controls.Add(_datasetViewer);
+            Controls.Add(_settingsBox);
             Controls.Add(_loginBox);
             Name = "LockerForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TrueNAS Locker";
-            Load += LockerForm_Load;
             FormClosing += LockerForm_Closing;
+            Load += LockerForm_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private UI.DatasetViewer _datasetViewer;
-        private UI.LoginBox _loginBox;
+        private DatasetViewer _datasetViewer;
+        private LoginBox _loginBox;
+        private SettingsBox _settingsBox;
     }
 }

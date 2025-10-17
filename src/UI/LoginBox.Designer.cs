@@ -39,6 +39,7 @@
             _passwordTextBox = new TextBox();
             _showPasswordCheckBox = new CheckBox();
             _loginButton = new Button();
+            _settingsButton = new Button();
             _groupBox.SuspendLayout();
             _flowLayout.SuspendLayout();
             SuspendLayout();
@@ -67,28 +68,30 @@
             _flowLayout.Controls.Add(_passwordTextBox);
             _flowLayout.Controls.Add(_showPasswordCheckBox);
             _flowLayout.Controls.Add(_loginButton);
+            _flowLayout.Controls.Add(_settingsButton);
             _flowLayout.Dock = DockStyle.Fill;
             _flowLayout.FlowDirection = FlowDirection.TopDown;
             _flowLayout.Location = new Point(3, 19);
             _flowLayout.Name = "_flowLayout";
-            _flowLayout.Padding = new Padding(0, 21, 0, 0);
+            _flowLayout.Padding = new Padding(0, 6, 0, 0);
             _flowLayout.Size = new Size(153, 228);
             _flowLayout.TabIndex = 6;
             // 
             // _widthGauge
             // 
             _widthGauge.Anchor = AnchorStyles.Top;
-            _widthGauge.Location = new Point(0, 21);
+            _widthGauge.Location = new Point(0, 6);
             _widthGauge.Margin = new Padding(0);
             _widthGauge.Name = "_widthGauge";
             _widthGauge.Size = new Size(153, 0);
             _widthGauge.TabIndex = 14;
+            _widthGauge.TabStop = false;
             // 
             // _hostLabel
             // 
             _hostLabel.AutoSize = true;
             _hostLabel.Dock = DockStyle.Fill;
-            _hostLabel.Location = new Point(3, 21);
+            _hostLabel.Location = new Point(3, 6);
             _hostLabel.Name = "_hostLabel";
             _hostLabel.Size = new Size(147, 15);
             _hostLabel.TabIndex = 6;
@@ -98,7 +101,7 @@
             // _hostTextBox
             // 
             _hostTextBox.Dock = DockStyle.Fill;
-            _hostTextBox.Location = new Point(3, 39);
+            _hostTextBox.Location = new Point(3, 24);
             _hostTextBox.Name = "_hostTextBox";
             _hostTextBox.Size = new Size(147, 23);
             _hostTextBox.TabIndex = 7;
@@ -108,7 +111,7 @@
             // 
             _userLabel.AutoSize = true;
             _userLabel.Dock = DockStyle.Fill;
-            _userLabel.Location = new Point(3, 65);
+            _userLabel.Location = new Point(3, 50);
             _userLabel.Name = "_userLabel";
             _userLabel.Size = new Size(147, 15);
             _userLabel.TabIndex = 8;
@@ -118,7 +121,7 @@
             // _userTextBox
             // 
             _userTextBox.Dock = DockStyle.Fill;
-            _userTextBox.Location = new Point(3, 83);
+            _userTextBox.Location = new Point(3, 68);
             _userTextBox.Name = "_userTextBox";
             _userTextBox.Size = new Size(147, 23);
             _userTextBox.TabIndex = 10;
@@ -128,7 +131,7 @@
             // 
             _passwordLabel.AutoSize = true;
             _passwordLabel.Dock = DockStyle.Fill;
-            _passwordLabel.Location = new Point(3, 109);
+            _passwordLabel.Location = new Point(3, 94);
             _passwordLabel.Name = "_passwordLabel";
             _passwordLabel.Size = new Size(147, 15);
             _passwordLabel.TabIndex = 9;
@@ -138,7 +141,7 @@
             // _passwordTextBox
             // 
             _passwordTextBox.Dock = DockStyle.Fill;
-            _passwordTextBox.Location = new Point(3, 127);
+            _passwordTextBox.Location = new Point(3, 112);
             _passwordTextBox.Name = "_passwordTextBox";
             _passwordTextBox.PasswordChar = '*';
             _passwordTextBox.Size = new Size(147, 23);
@@ -149,7 +152,7 @@
             // 
             _showPasswordCheckBox.Anchor = AnchorStyles.Top;
             _showPasswordCheckBox.AutoSize = true;
-            _showPasswordCheckBox.Location = new Point(22, 156);
+            _showPasswordCheckBox.Location = new Point(22, 141);
             _showPasswordCheckBox.Name = "_showPasswordCheckBox";
             _showPasswordCheckBox.Size = new Size(108, 19);
             _showPasswordCheckBox.TabIndex = 12;
@@ -160,12 +163,22 @@
             // _loginButton
             // 
             _loginButton.Dock = DockStyle.Fill;
-            _loginButton.Location = new Point(3, 181);
+            _loginButton.Location = new Point(3, 166);
             _loginButton.Name = "_loginButton";
             _loginButton.Size = new Size(147, 23);
             _loginButton.TabIndex = 13;
             _loginButton.Text = "Login";
             _loginButton.UseVisualStyleBackColor = true;
+            // 
+            // _settingsButton
+            // 
+            _settingsButton.Dock = DockStyle.Fill;
+            _settingsButton.Location = new Point(3, 195);
+            _settingsButton.Name = "_settingsButton";
+            _settingsButton.Size = new Size(147, 23);
+            _settingsButton.TabIndex = 14;
+            _settingsButton.Text = "Settings";
+            _settingsButton.UseVisualStyleBackColor = true;
             // 
             // LoginBox
             // 
@@ -194,5 +207,6 @@
         private TextBox _passwordTextBox;
         private CheckBox _showPasswordCheckBox;
         private Button _loginButton;
+        private Button _settingsButton;
     }
 }
