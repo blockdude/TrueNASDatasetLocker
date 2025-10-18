@@ -137,7 +137,7 @@ namespace TrueNASLocker.UI
 
             if (Global.Version >= Global.Updater.GetLatestVersion())
             {
-                MessageBox.Show(this, "Already on latest version");
+                MessageBoxEx.Show(this, "Already on latest version");
                 return;
             }
 
