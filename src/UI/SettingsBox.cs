@@ -8,6 +8,8 @@
             set => SetSettings(value);
         }
 
+        public long LatestVersion { set => _latestVersionTextBox.Text = value == 0 ? "Loading..." : "v" + value; }
+
         public event EventHandler? UpdateClick
         {
             add => _updateButton.Click += value;
@@ -31,6 +33,7 @@
             InitializeComponent();
             SetSettings(Global.Settings);
             _currentVersionTextBox.Text = "v" + Global.Version;
+            _latestVersionTextBox.Text = Global.LatestVersion == 0 ? "Loading.." : "v" + Global.LatestVersion;
         }
 
         public void SetSettings(Settings settings)

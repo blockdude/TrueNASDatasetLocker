@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using TrueNASLocker.UI;
 namespace TrueNASLocker
 {

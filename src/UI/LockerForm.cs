@@ -20,6 +20,7 @@ namespace TrueNASLocker.UI
         private void LockerForm_Load(object sender, EventArgs e)
         {
             _datasetViewer.LogoutClick += (sender, e) => Viewer_Logout_Click();
+            _settingsBox.UpdateClick += (sender, e) => Settings_Update_Click();
             _settingsBox.CancelClick += (sender, e) => Settings_Cancel_Click();
             _settingsBox.ApplyClick += (sender, e) => Settings_Apply_Click();
             _loginBox.LoginClick += (sender, e) => Login_Login_Click();
@@ -106,6 +107,40 @@ namespace TrueNASLocker.UI
             SetState(State.LOGIN);
         }
 
+        private void Settings_Update_Click()
+        {
+            if (Global.Updater.GetLatestVersion() <= 0)
+            {
+                MessageBoxEx.Show(this, "Could get update info.\nMake sure you have internet connection.");
+                return;
+            }
+
+            if (Global.Version >= Global.Updater.GetLatestVersion())
+            {
+                MessageBoxEx.Show(this, "Already on latest version");
+                return;
+            }
+
+            _settingsBox.Enabled = false;
+            DialogResult result = MessageBoxEx.Show(this, "Start update from v" + Global.Version + " to v" + Global.Updater.GetLatestVersion(), "", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.Cancel)
+            {
+                _settingsBox.Enabled = true;
+                return;
+            }
+
+            if (!Global.Updater.StartUpdate())
+            {
+                MessageBoxEx.Show(this, "Failed to update");
+                _settingsBox.Enabled = true;
+                return;
+            }
+
+            MessageBoxEx.Show(this, "Update completed. Restarting Application...");
+            Process.Start(Application.ExecutablePath, Environment.GetCommandLineArgs());
+            Environment.Exit(0);
+        }
+
         private void SetState(State state)
         {
             _state = state;
@@ -116,26 +151,10 @@ namespace TrueNASLocker.UI
             _settingsBox.Visible = false;
             _settingsBox.Enabled = false;
 
-            switch (state)
-            {
-                case State.LOGIN:
-                    _loginBox.Visible = true;
-                    _loginBox.Enabled = true;
-                    break;
-                case State.VIEW:
-                    _datasetViewer.Visible = true;
-                    _datasetViewer.Enabled = true;
-                    break;
-                case State.SETTINGS:
-                    _settingsBox.Visible = true;
-                    _settingsBox.Enabled = true;
-                    break;
-                default:
-                    break;
-            }
-
             if (state == State.LOGIN)
             {
+                _loginBox.Visible = true;
+                _loginBox.Enabled = true;
                 _loginBox.Focus();
                 _loginBox.Hostname = Global.Settings.Hostname;
                 _loginBox.Username = Global.Settings.Username;
@@ -146,6 +165,17 @@ namespace TrueNASLocker.UI
                             LoginBox.InputType.USERNAME :
                         LoginBox.InputType.HOSTNAME;
                 _loginBox.InputFocus(inputType);
+            }
+            else if (state == State.VIEW)
+            {
+                _datasetViewer.Visible = true;
+                _datasetViewer.Enabled = true;
+            }
+            else if (state == State.SETTINGS)
+            {
+                _settingsBox.Visible = true;
+                _settingsBox.Enabled = true;
+                _settingsBox.LatestVersion = Global.LatestVersion;
             }
         }
     }
