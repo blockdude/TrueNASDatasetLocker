@@ -5,7 +5,7 @@ namespace TrueNASLocker
 {
     public static class Global
     {
-        public static readonly long Version = 202510012110;
+        public static readonly long Version = 202510172153;
         public static readonly string Upstream = "https://api.github.com/repos/blockdude/TrueNASDatasetLocker/releases/latest";
 
         public static Updater Updater = new Updater();
