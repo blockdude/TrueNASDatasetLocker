@@ -104,7 +104,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TrueNAS Dataset Locker";
             FormClosing += LockerForm_Closing;
-            Load += LockerForm_Load;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

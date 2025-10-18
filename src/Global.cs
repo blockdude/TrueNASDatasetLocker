@@ -5,7 +5,7 @@ namespace TrueNASLocker
 {
     public static class Global
     {
-        public static readonly long Version = 202510012112;
+        public static readonly long Version = 202510012110;
         public static readonly string Upstream = "https://api.github.com/repos/blockdude/TrueNASDatasetLocker/releases/latest";
 
         public static Updater Updater = new Updater();
@@ -42,16 +42,6 @@ namespace TrueNASLocker
 
         public static void LoadSettings()
         {
-            Task.Run(() =>
-            {
-                foreach (string file in Directory.GetFiles(".", "*.bak"))
-                {
-                    File.Delete(file);
-                }
-
-                Updater.FetchUpdateInfo(Upstream);
-            });
-
             _settings = ReadData(_settingsPath);
         }
 

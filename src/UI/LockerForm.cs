@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO;
 namespace TrueNASLocker.UI
 {
     public partial class LockerForm : Form
@@ -15,10 +16,6 @@ namespace TrueNASLocker.UI
         public LockerForm()
         {
             InitializeComponent();
-        }
-
-        private void LockerForm_Load(object sender, EventArgs e)
-        {
             _datasetViewer.LogoutClick += (sender, e) => Viewer_Logout_Click();
             _settingsBox.UpdateClick += (sender, e) => Settings_Update_Click();
             _settingsBox.CancelClick += (sender, e) => Settings_Cancel_Click();
@@ -46,6 +43,29 @@ namespace TrueNASLocker.UI
             _versionLabel.BringToFront();
             _versionLabel.Text = "v" + Global.Version;
             SetState(State.LOGIN);
+
+            // run background task to check updates and delete old files
+            Task.Run(() =>
+            {
+                foreach (string file in Directory.GetFiles(".", "*.bak"))
+                {
+                    File.Delete(file);
+                }
+
+                Global.Updater.FetchUpdateInfo(Global.Upstream);
+                if (Global.Updater.GetLatestVersion() > Global.Version)
+                {
+                    Invoke(() =>
+                    {
+                        DialogResult result = MessageBoxEx.Show(this, "Update Available. Update Now?", "", MessageBoxButtons.YesNo);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            Settings_Update_Click();
+                        }
+                    });
+                }
+            });
         }
 
         private void LockerForm_Closing(object sernder, EventArgs e)
@@ -117,12 +137,12 @@ namespace TrueNASLocker.UI
 
             if (Global.Version >= Global.Updater.GetLatestVersion())
             {
-                MessageBoxEx.Show(this, "Already on latest version");
+                MessageBox.Show(this, "Already on latest version");
                 return;
             }
 
             _settingsBox.Enabled = false;
-            DialogResult result = MessageBoxEx.Show(this, "Start update from v" + Global.Version + " to v" + Global.Updater.GetLatestVersion(), "", MessageBoxButtons.OKCancel);
+            DialogResult result = MessageBoxEx.Show(this, "Start update?\nv" + Global.Version + " -> v" + Global.Updater.GetLatestVersion(), "", MessageBoxButtons.OKCancel);
             if (result == DialogResult.Cancel)
             {
                 _settingsBox.Enabled = true;
