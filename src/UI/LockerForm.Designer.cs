@@ -68,7 +68,7 @@
             // 
             _versionLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             _versionLabel.AutoSize = true;
-            _versionLabel.Location = new Point(12, 492);
+            _versionLabel.Location = new Point(12, 434);
             _versionLabel.Name = "_versionLabel";
             _versionLabel.Size = new Size(45, 15);
             _versionLabel.TabIndex = 3;
@@ -82,7 +82,7 @@
             panel1.Controls.Add(_settingsBox);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(411, 477);
+            panel1.Size = new Size(411, 419);
             panel1.TabIndex = 4;
             // 
             // _datasetViewer
@@ -98,7 +98,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(435, 516);
+            ClientSize = new Size(435, 458);
             Controls.Add(panel1);
             Controls.Add(_versionLabel);
             Name = "LockerForm";
