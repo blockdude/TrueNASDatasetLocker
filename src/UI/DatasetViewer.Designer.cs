@@ -73,8 +73,8 @@
             // _datasetView.Panel2
             // 
             _datasetView.Panel2.Controls.Add(_infoSplitter);
-            _datasetView.Size = new Size(325, 357);
-            _datasetView.SplitterDistance = 187;
+            _datasetView.Size = new Size(400, 409);
+            _datasetView.SplitterDistance = 262;
             _datasetView.TabIndex = 16;
             _datasetView.TabStop = false;
             // 
@@ -94,7 +94,7 @@
             // _datasetControlsSplit.Panel2
             // 
             _datasetControlsSplit.Panel2.Controls.Add(_datasetListView);
-            _datasetControlsSplit.Size = new Size(187, 357);
+            _datasetControlsSplit.Size = new Size(262, 409);
             _datasetControlsSplit.SplitterDistance = 25;
             _datasetControlsSplit.TabIndex = 12;
             _datasetControlsSplit.TabStop = false;
@@ -104,7 +104,7 @@
             _refreshButton.Dock = DockStyle.Fill;
             _refreshButton.Location = new Point(0, 0);
             _refreshButton.Name = "_refreshButton";
-            _refreshButton.Size = new Size(187, 25);
+            _refreshButton.Size = new Size(262, 25);
             _refreshButton.TabIndex = 30;
             _refreshButton.Text = "Refresh";
             _refreshButton.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             _datasetListView.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5 });
             _datasetListView.Location = new Point(0, 0);
             _datasetListView.Name = "_datasetListView";
-            _datasetListView.Size = new Size(187, 328);
+            _datasetListView.Size = new Size(262, 380);
             _datasetListView.Sorting = SortOrder.Ascending;
             _datasetListView.TabIndex = 10;
             _datasetListView.TabStop = false;
@@ -153,8 +153,8 @@
             // _infoSplitter.Panel2
             // 
             _infoSplitter.Panel2.Controls.Add(_userBox);
-            _infoSplitter.Size = new Size(134, 357);
-            _infoSplitter.SplitterDistance = 170;
+            _infoSplitter.Size = new Size(134, 409);
+            _infoSplitter.SplitterDistance = 250;
             _infoSplitter.TabIndex = 16;
             _infoSplitter.TabStop = false;
             // 
@@ -164,7 +164,7 @@
             _unlockBox.Location = new Point(0, 0);
             _unlockBox.Name = "_unlockBox";
             _unlockBox.Password = "";
-            _unlockBox.Size = new Size(134, 170);
+            _unlockBox.Size = new Size(134, 250);
             _unlockBox.TabIndex = 10;
             // 
             // _editBox
@@ -172,7 +172,7 @@
             _editBox.Dock = DockStyle.Fill;
             _editBox.Location = new Point(0, 0);
             _editBox.Name = "_editBox";
-            _editBox.Size = new Size(134, 170);
+            _editBox.Size = new Size(134, 250);
             _editBox.TabIndex = 15;
             // 
             // _infoBox
@@ -180,7 +180,7 @@
             _infoBox.Dock = DockStyle.Fill;
             _infoBox.Location = new Point(0, 0);
             _infoBox.Name = "_infoBox";
-            _infoBox.Size = new Size(134, 170);
+            _infoBox.Size = new Size(134, 250);
             _infoBox.TabIndex = 12;
             // 
             // _changePasswordBox
@@ -190,7 +190,7 @@
             _changePasswordBox.Location = new Point(0, 0);
             _changePasswordBox.Name = "_changePasswordBox";
             _changePasswordBox.Password = "";
-            _changePasswordBox.Size = new Size(134, 170);
+            _changePasswordBox.Size = new Size(134, 250);
             _changePasswordBox.TabIndex = 13;
             // 
             // _userBox
@@ -199,7 +199,7 @@
             _userBox.Hostname = "localhost";
             _userBox.Location = new Point(0, 0);
             _userBox.Name = "_userBox";
-            _userBox.Size = new Size(134, 183);
+            _userBox.Size = new Size(134, 155);
             _userBox.TabIndex = 20;
             _userBox.Username = "user";
             // 
@@ -210,7 +210,7 @@
             Controls.Add(_datasetView);
             Name = "DatasetViewer";
             Padding = new Padding(3);
-            Size = new Size(331, 363);
+            Size = new Size(406, 415);
             _datasetView.Panel1.ResumeLayout(false);
             _datasetView.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)_datasetView).EndInit();
