@@ -39,6 +39,7 @@
             _datasetListView = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
             _infoSplitter = new SplitContainer();
             _unlockBox = new DatasetUnlock();
             _editBox = new DatasetEdit();
@@ -73,8 +74,8 @@
             // _datasetView.Panel2
             // 
             _datasetView.Panel2.Controls.Add(_infoSplitter);
-            _datasetView.Size = new Size(400, 409);
-            _datasetView.SplitterDistance = 262;
+            _datasetView.Size = new Size(472, 409);
+            _datasetView.SplitterDistance = 334;
             _datasetView.TabIndex = 16;
             _datasetView.TabStop = false;
             // 
@@ -94,7 +95,7 @@
             // _datasetControlsSplit.Panel2
             // 
             _datasetControlsSplit.Panel2.Controls.Add(_datasetListView);
-            _datasetControlsSplit.Size = new Size(262, 409);
+            _datasetControlsSplit.Size = new Size(334, 409);
             _datasetControlsSplit.SplitterDistance = 25;
             _datasetControlsSplit.TabIndex = 12;
             _datasetControlsSplit.TabStop = false;
@@ -104,20 +105,20 @@
             _refreshButton.Dock = DockStyle.Fill;
             _refreshButton.Location = new Point(0, 0);
             _refreshButton.Name = "_refreshButton";
-            _refreshButton.Size = new Size(262, 25);
+            _refreshButton.Size = new Size(334, 25);
             _refreshButton.TabIndex = 30;
             _refreshButton.Text = "Refresh";
             _refreshButton.UseVisualStyleBackColor = true;
             // 
             // _datasetListView
             // 
-            _datasetListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+            _datasetListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
             _datasetListView.Dock = DockStyle.Fill;
             _datasetListView.FullRowSelect = true;
             _datasetListView.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5 });
             _datasetListView.Location = new Point(0, 0);
             _datasetListView.Name = "_datasetListView";
-            _datasetListView.Size = new Size(262, 380);
+            _datasetListView.Size = new Size(334, 380);
             _datasetListView.Sorting = SortOrder.Ascending;
             _datasetListView.TabIndex = 10;
             _datasetListView.TabStop = false;
@@ -133,6 +134,11 @@
             // 
             columnHeader2.Text = "Status";
             columnHeader2.Width = 80;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Used";
+            columnHeader3.Width = 80;
             // 
             // _infoSplitter
             // 
@@ -210,7 +216,7 @@
             Controls.Add(_datasetView);
             Name = "DatasetViewer";
             Padding = new Padding(3);
-            Size = new Size(406, 415);
+            Size = new Size(478, 415);
             _datasetView.Panel1.ResumeLayout(false);
             _datasetView.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)_datasetView).EndInit();
@@ -239,5 +245,6 @@
         private SplitContainer _infoSplitter;
         private Button _refreshButton;
         private SplitContainer _datasetControlsSplit;
+        private ColumnHeader columnHeader3;
     }
 }

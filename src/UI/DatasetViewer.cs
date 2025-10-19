@@ -126,6 +126,7 @@ namespace TrueNASLocker.UI
                 ListViewItem item = new ListViewItem();
                 item.Text = dataset.id.Substring(_storageBase.Length);
                 item.SubItems.Add(dataset.locked ? "Locked" : "Unlocked");
+                item.SubItems.Add(dataset.GetUsed());
                 _datasetListView.Items.Add(item);
             }
         }

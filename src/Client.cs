@@ -28,6 +28,14 @@ namespace TrueNASLocker
         public required object usedbysnapshots;
         public required object available;
         public required object pbkdf2iters;
+
+        public string GetUsed()
+        {
+            JsonNode? node = JsonNode.Parse(used.ToString());
+            if (node == null)
+                return "";
+            return (node["value"] ?? "").ToString();
+        }
     }
 
     public class Client : RpcWsClient, IDisposable
