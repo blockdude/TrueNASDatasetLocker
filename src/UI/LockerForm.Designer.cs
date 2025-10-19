@@ -40,7 +40,7 @@
             // _loginBox
             // 
             _loginBox.Hostname = "";
-            _loginBox.Location = new Point(0, -38);
+            _loginBox.Location = new Point(6, 11);
             _loginBox.Margin = new Padding(0);
             _loginBox.Name = "_loginBox";
             _loginBox.Password = "";
@@ -50,7 +50,7 @@
             // 
             // _settingsBox
             // 
-            _settingsBox.Location = new Point(0, -35);
+            _settingsBox.Location = new Point(6, 14);
             _settingsBox.Name = "_settingsBox";
             settings1.Hostname = null;
             settings1.Path = "";
@@ -67,7 +67,7 @@
             // 
             _versionLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             _versionLabel.AutoSize = true;
-            _versionLabel.Location = new Point(12, 357);
+            _versionLabel.Location = new Point(12, 407);
             _versionLabel.Name = "_versionLabel";
             _versionLabel.Size = new Size(45, 15);
             _versionLabel.TabIndex = 3;
@@ -81,12 +81,12 @@
             panel1.Controls.Add(_settingsBox);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(310, 342);
+            panel1.Size = new Size(329, 392);
             panel1.TabIndex = 4;
             // 
             // _datasetViewer
             // 
-            _datasetViewer.Location = new Point(-3, -35);
+            _datasetViewer.Location = new Point(3, 14);
             _datasetViewer.Name = "_datasetViewer";
             _datasetViewer.Padding = new Padding(3);
             _datasetViewer.Size = new Size(313, 356);
@@ -97,7 +97,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(334, 381);
+            ClientSize = new Size(353, 431);
             Controls.Add(panel1);
             Controls.Add(_versionLabel);
             Name = "LockerForm";

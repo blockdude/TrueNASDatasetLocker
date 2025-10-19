@@ -9,6 +9,7 @@
         public bool SaveUsername { get; set; }
         public string Hostname { get; set; }
         public string Username { get; set; }
+        public bool ShowPatchNotes { get; set; }
 
         public Settings()
         {
@@ -19,6 +20,7 @@
             SaveUsername = true;
             Hostname = "";
             Username = "";
+            ShowPatchNotes = true;
         }
     }
 }

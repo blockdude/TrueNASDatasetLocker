@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace TrueNASLocker
 {
@@ -9,7 +8,6 @@ namespace TrueNASLocker
         public static readonly string Upstream = "https://api.github.com/repos/blockdude/TrueNASDatasetLocker/releases/latest";
 
         public static Updater Updater = new Updater();
-        public static Mutex mutex = new Mutex();
         public static long LatestVersion { get => Updater.GetLatestVersion(); }
         public static Settings Settings { get => _settings; set => SaveSettings(value); }
 

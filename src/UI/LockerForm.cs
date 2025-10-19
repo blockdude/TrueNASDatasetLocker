@@ -47,11 +47,7 @@ namespace TrueNASLocker.UI
             // run background task to check updates and delete old files
             Task.Run(() =>
             {
-                foreach (string file in Directory.GetFiles(".", "*.bak"))
-                {
-                    File.Delete(file);
-                }
-
+                Global.Updater.CleanUpFiles();
                 Global.Updater.FetchUpdateInfo(Global.Upstream);
                 if (Global.Updater.GetLatestVersion() > Global.Version)
                 {
@@ -129,6 +125,7 @@ namespace TrueNASLocker.UI
 
         private void Settings_Update_Click()
         {
+            Global.Updater.FetchUpdateInfo(Global.Upstream);
             if (Global.Updater.GetLatestVersion() <= 0)
             {
                 MessageBoxEx.Show(this, "Could get update info.\nMake sure you have internet connection.");
@@ -157,8 +154,7 @@ namespace TrueNASLocker.UI
             }
 
             MessageBoxEx.Show(this, "Update completed. Restarting Application...");
-            Process.Start(Application.ExecutablePath, Environment.GetCommandLineArgs());
-            Environment.Exit(0);
+            Global.Updater.RestartApplication();
         }
 
         private void SetState(State state)

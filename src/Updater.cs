@@ -17,6 +17,7 @@ namespace TrueNASLocker
         private bool _fetched = false;
         private string _latestTag = "";
         private long _latestVersion = 0;
+        private string _patchNotes = "";
 
         private long _size = 0;
         private string _fileName = "";
@@ -51,8 +52,9 @@ namespace TrueNASLocker
             string? digest = node["assets"]?.AsArray()?[0]?["digest"]?.ToString();
             string? size = node["assets"]?.AsArray()?[0]?["size"]?.ToString();
             string? fileName = node["assets"]?.AsArray()?[0]?["name"]?.ToString();
+            string? patchNotes = node["body"]?.ToString();
 
-            if (latestTag == null || downloadLink == null || digest == null || size == null || fileName == null)
+            if (latestTag == null || downloadLink == null || digest == null || size == null || fileName == null || patchNotes == null)
                 return false;
 
             _latestTag = latestTag;
@@ -61,8 +63,8 @@ namespace TrueNASLocker
             _digest = digest;
             _size = long.Parse(size);
             _fileName = fileName;
+            _patchNotes = patchNotes;
             _fetched = true;
-
             return true;
         }
 
@@ -120,7 +122,7 @@ namespace TrueNASLocker
             Directory.CreateDirectory("tmp");
             System.IO.Compression.ZipFile.ExtractToDirectory(fileName, "tmp");
 
-            // rename move and delete files
+            // rename old files and move new files to replace them
             foreach (string newFile in Directory.GetFiles("tmp"))
             {
                 string oldFile = newFile.Remove(0, 4);
@@ -130,6 +132,22 @@ namespace TrueNASLocker
 
             Directory.Delete("tmp");
             return true;
+        }
+
+        // run this after StartUpdate()
+        public void RestartApplication()
+        {
+            Process.Start(Application.ExecutablePath, Environment.GetCommandLineArgs());
+            Environment.Exit(0);
+        }
+
+        // run this after the application restarts
+        public void CleanUpFiles()
+        {
+            foreach (string file in Directory.GetFiles(".", "*.bak"))
+            {
+                File.Delete(file);
+            }
         }
     }
 }
