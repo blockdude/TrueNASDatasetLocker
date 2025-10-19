@@ -154,7 +154,7 @@
             // 
             _infoSplitter.Panel2.Controls.Add(_userBox);
             _infoSplitter.Size = new Size(134, 357);
-            _infoSplitter.SplitterDistance = 203;
+            _infoSplitter.SplitterDistance = 170;
             _infoSplitter.TabIndex = 16;
             _infoSplitter.TabStop = false;
             // 
@@ -164,7 +164,7 @@
             _unlockBox.Location = new Point(0, 0);
             _unlockBox.Name = "_unlockBox";
             _unlockBox.Password = "";
-            _unlockBox.Size = new Size(134, 203);
+            _unlockBox.Size = new Size(134, 170);
             _unlockBox.TabIndex = 10;
             // 
             // _editBox
@@ -172,7 +172,7 @@
             _editBox.Dock = DockStyle.Fill;
             _editBox.Location = new Point(0, 0);
             _editBox.Name = "_editBox";
-            _editBox.Size = new Size(134, 203);
+            _editBox.Size = new Size(134, 170);
             _editBox.TabIndex = 15;
             // 
             // _infoBox
@@ -180,7 +180,7 @@
             _infoBox.Dock = DockStyle.Fill;
             _infoBox.Location = new Point(0, 0);
             _infoBox.Name = "_infoBox";
-            _infoBox.Size = new Size(134, 203);
+            _infoBox.Size = new Size(134, 170);
             _infoBox.TabIndex = 12;
             // 
             // _changePasswordBox
@@ -190,7 +190,7 @@
             _changePasswordBox.Location = new Point(0, 0);
             _changePasswordBox.Name = "_changePasswordBox";
             _changePasswordBox.Password = "";
-            _changePasswordBox.Size = new Size(134, 203);
+            _changePasswordBox.Size = new Size(134, 170);
             _changePasswordBox.TabIndex = 13;
             // 
             // _userBox
@@ -199,7 +199,7 @@
             _userBox.Hostname = "localhost";
             _userBox.Location = new Point(0, 0);
             _userBox.Name = "_userBox";
-            _userBox.Size = new Size(134, 150);
+            _userBox.Size = new Size(134, 183);
             _userBox.TabIndex = 20;
             _userBox.Username = "user";
             // 

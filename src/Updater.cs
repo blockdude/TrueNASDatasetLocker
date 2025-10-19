@@ -78,6 +78,11 @@ namespace TrueNASLocker
             return _downloadLink;
         }
 
+        public string GetLatestPatchNotes()
+        {
+            return _patchNotes;
+        }
+
         private string HashToString(byte[] hash)
         {
             StringBuilder sb = new StringBuilder();
@@ -85,6 +90,14 @@ namespace TrueNASLocker
             foreach (byte b in hash)
                 sb.Append(b.ToString("x2"));
             return sb.ToString();
+        }
+
+        public void DownloadPatchNotes(string path)
+        {
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                writer.Write(_patchNotes);
+            }
         }
 
         public bool StartUpdate()

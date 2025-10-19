@@ -4,15 +4,18 @@ namespace TrueNASLocker
 {
     public static class Global
     {
-        public static readonly long Version = 202510172213;
+        public static readonly long Version = 202510172210;
         public static readonly string Upstream = "https://api.github.com/repos/blockdude/TrueNASDatasetLocker/releases/latest";
+        public static readonly string SettingsPath = "Settings.json";
+        public static readonly string PatchNotesPath = "PatchNotes.txt";
 
         public static Updater Updater = new Updater();
         public static long LatestVersion { get => Updater.GetLatestVersion(); }
         public static Settings Settings { get => _settings; set => SaveSettings(value); }
+        public static string PatchNotes { get => _patchNotes; }
 
         private static Settings _settings;
-        private static string _settingsPath = "settings.json";
+        private static string _patchNotes = "";
 
         private static Settings WriteData(Settings settings, string path)
         {
@@ -40,7 +43,15 @@ namespace TrueNASLocker
 
         public static void LoadSettings()
         {
-            _settings = ReadData(_settingsPath);
+            if (File.Exists(PatchNotesPath))
+            {
+                using (StreamReader reader = new StreamReader(PatchNotesPath))
+                {
+                    _patchNotes = reader.ReadToEnd();
+                }
+            }
+
+            _settings = ReadData(SettingsPath);
         }
 
         public static void SaveSettings(Settings settings)
@@ -48,7 +59,7 @@ namespace TrueNASLocker
             // Make sure we don't accidently save hostname or username if we did not want to
             settings.Hostname = settings.SaveHostname ? settings.Hostname : string.Empty;
             settings.Username = settings.SaveUsername ? settings.Username : string.Empty;
-            _settings = WriteData(settings, _settingsPath);
+            _settings = WriteData(settings, SettingsPath);
         }
     }
 }

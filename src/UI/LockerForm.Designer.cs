@@ -57,6 +57,7 @@
             settings1.Port = 0;
             settings1.SaveHostname = false;
             settings1.SaveUsername = false;
+            settings1.ShowPatchNotes = false;
             settings1.Username = null;
             settings1.WSS = false;
             _settingsBox.Settings = settings1;
@@ -104,6 +105,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TrueNAS Dataset Locker";
             FormClosing += LockerForm_Closing;
+            Shown += LockerForm_Shown;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

@@ -43,6 +43,17 @@ namespace TrueNASLocker.UI
             _versionLabel.BringToFront();
             _versionLabel.Text = "v" + Global.Version;
             SetState(State.LOGIN);
+        }
+
+        private void LockerForm_Shown(object sender, EventArgs e)
+        {
+            if (Global.Settings.ShowPatchNotes)
+            {
+                Settings settings = Global.Settings;
+                settings.ShowPatchNotes = false;
+                Global.Settings = settings;
+                MessageBoxEx.Show(Global.PatchNotes, "Patch Notes");
+            }
 
             // run background task to check updates and delete old files
             Task.Run(() =>
@@ -125,13 +136,13 @@ namespace TrueNASLocker.UI
 
         private void Settings_Update_Click()
         {
-            Global.Updater.FetchUpdateInfo(Global.Upstream);
             if (Global.Updater.GetLatestVersion() <= 0)
             {
-                MessageBoxEx.Show(this, "Could get update info.\nMake sure you have internet connection.");
+                MessageBoxEx.Show(this, "Could not get update info.\nMake sure you have internet connection.", "Upstream not availabel");
                 return;
             }
 
+            Global.Updater.FetchUpdateInfo(Global.Upstream);
             if (Global.Version >= Global.Updater.GetLatestVersion())
             {
                 MessageBoxEx.Show(this, "Already on latest version");
@@ -152,6 +163,11 @@ namespace TrueNASLocker.UI
                 _settingsBox.Enabled = true;
                 return;
             }
+
+            Global.Updater.DownloadPatchNotes(Global.PatchNotesPath);
+            Settings settings = Global.Settings;
+            settings.ShowPatchNotes = true;
+            Global.Settings = settings;
 
             MessageBoxEx.Show(this, "Update completed. Restarting Application...");
             Global.Updater.RestartApplication();
