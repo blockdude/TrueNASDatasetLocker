@@ -47,14 +47,6 @@ namespace TrueNASLocker.UI
 
         private void LockerForm_Shown(object sender, EventArgs e)
         {
-            if (Global.Settings.ShowPatchNotes)
-            {
-                Settings settings = Global.Settings;
-                settings.ShowPatchNotes = false;
-                Global.Settings = settings;
-                MessageBoxEx.Show(Global.PatchNotes, "Patch Notes");
-            }
-
             // run background task to check updates and delete old files
             Task.Run(() =>
             {
@@ -71,6 +63,17 @@ namespace TrueNASLocker.UI
                             Settings_Update_Click();
                         }
                     });
+                }
+                else if (Global.Settings.ShowPatchNotes)
+                {
+                    Settings settings = Global.Settings;
+                    settings.ShowPatchNotes = false;
+                    Global.Settings = settings;
+                    Invoke(() =>
+                    {
+                        MessageBoxEx.Show(this, Global.Updater.GetLatestPatchNotes(), "Patch Notes");
+                    });
+                    
                 }
             });
         }
@@ -165,7 +168,6 @@ namespace TrueNASLocker.UI
                 return;
             }
 
-            Global.Updater.DownloadPatchNotes(Global.PatchNotesPath);
             Settings settings = Global.Settings;
             settings.ShowPatchNotes = true;
             Global.Settings = settings;

@@ -1,13 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Net;
-using System.Net.Http;
-using System.Net.Sockets;
+﻿using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Nodes;
-using System.Xml.Linq;
 
 namespace TrueNASLocker
 {
@@ -90,14 +84,6 @@ namespace TrueNASLocker
             foreach (byte b in hash)
                 sb.Append(b.ToString("x2"));
             return sb.ToString();
-        }
-
-        public void DownloadPatchNotes(string path)
-        {
-            using (StreamWriter writer = new StreamWriter(path))
-            {
-                writer.Write(_patchNotes);
-            }
         }
 
         public bool StartUpdate()
