@@ -201,7 +201,7 @@ namespace TrueNASLocker.UI
             _state = State.LOCK;
         }
 
-        private void DatasetWork(string filter, string message, Func<List<string>, List<string>> callWork)
+        private void DatasetWork(string filter, string caption, Func<List<string>, List<string>> callWork)
         {
             List<string> datasets = new List<string>();
             foreach (ListViewItem item in _datasetListView.SelectedItems)
@@ -218,7 +218,7 @@ namespace TrueNASLocker.UI
             {
                 string failedMessage = "";
                 failed.ForEach(dataset => failedMessage += "\n" + dataset);
-                MessageBoxEx.Show(this, message + failedMessage, "Warning");
+                MessageBoxEx.Show(this, failedMessage, caption);
             }
         }
 

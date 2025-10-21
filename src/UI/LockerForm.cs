@@ -113,6 +113,7 @@ namespace TrueNASLocker.UI
 
         private void Viewer_Logout_Click()
         {
+            _datasetViewer.Enabled = false;
             _datasetViewer.Logout();
             SetState(State.LOGIN);
         }

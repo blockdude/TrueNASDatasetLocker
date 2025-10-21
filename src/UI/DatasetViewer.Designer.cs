@@ -136,7 +136,7 @@
             _miscBox.Size = new Size(148, 60);
             _miscBox.TabIndex = 22;
             _miscBox.TabStop = false;
-            _miscBox.Text = "Refresh";
+            _miscBox.Text = "Refresh Datasets";
             // 
             // _miscLayout
             // 

@@ -1,5 +1,7 @@
-﻿using JsonRpcClient.Clients;
+﻿using Accessibility;
+using JsonRpcClient.Clients;
 using Newtonsoft.Json;
+using System.Data;
 using System.Diagnostics;
 using System.Text.Json.Nodes;
 
@@ -169,6 +171,42 @@ namespace TrueNASLocker
             return failedJobs;
         }
 
+        private List<string> RunDatasetJobPostOrder(List<string> datasets, Func<string, object?> callJob)
+        {
+            List<string> failed = new List<string>();
+            List<string> sortedDatasets = new List<string>(datasets);
+            sortedDatasets.Sort((a, b) =>
+            {
+                return b.Count((c) => c == '/') - a.Count((c) => c == '/');
+            });
+
+            List<string> subDatasets = new List<string>();
+            foreach (string dataset in sortedDatasets)
+            {
+                if (subDatasets.Count <= 0)
+                {
+                    subDatasets.Add(dataset);
+                    continue;
+                }
+
+                if (dataset.Count((c) => c == '/') == subDatasets.First().Count((c) => c == '/'))
+                {
+                    subDatasets.Add(dataset);
+                    continue;
+                }
+                else
+                {
+                    failed.AddRange(RunDatasetJob(subDatasets, callJob));
+                    subDatasets.Clear();
+                    subDatasets.Add(dataset);
+                }
+            }
+
+            failed.AddRange(RunDatasetJob(subDatasets, callJob));
+            failed.Sort();
+            return failed;
+        }
+
         private List<string> RunDatasetJob(List<string> datasets, Func<string, object?> callJob)
         {
             List<string> failed = new List<string>();
@@ -208,7 +246,7 @@ namespace TrueNASLocker
 
         public List<string> LockDataset(List<string> datasets)
         {
-            return RunDatasetJob(datasets, (dataset) =>
+            return RunDatasetJobPostOrder(datasets, (dataset) =>
             {
                 return Task.Run(() => Call("pool.dataset.lock", new List<string> { dataset })).Result;
             });
