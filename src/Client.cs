@@ -165,44 +165,64 @@ namespace TrueNASLocker
                     }
                 }
 
-                Thread.Sleep(100);
+                Thread.Sleep(500);
             }
 
             return failedJobs;
         }
 
-        private List<string> RunDatasetJobPostOrder(List<string> datasets, Func<string, object?> callJob)
+        private enum JobOrder
+        {
+            ChildrenFirst,
+            ParentFirst
+        }
+
+        private List<string> RunDatasetJob(List<string> datasets, JobOrder order, Func<string, object?> callJob)
         {
             List<string> failed = new List<string>();
-            List<string> sortedDatasets = new List<string>(datasets);
-            sortedDatasets.Sort((a, b) =>
+            if (!_connected || !_loggedin || datasets.Count <= 0)
             {
-                return b.Count((c) => c == '/') - a.Count((c) => c == '/');
-            });
+                failed.AddRange(datasets);
+                return failed;
+            }
 
-            List<string> subDatasets = new List<string>();
+            List<string> sortedDatasets = new List<string>(datasets);
+
+            if (order == JobOrder.ChildrenFirst)
+            {
+                sortedDatasets.Sort((a, b) =>
+                {
+                    return b.Count((c) => c == '/') - a.Count((c) => c == '/');
+                });
+            }
+
+            if (order == JobOrder.ParentFirst)
+            {
+                sortedDatasets.Sort((a, b) =>
+                {
+                    return a.Count((c) => c == '/') - b.Count((c) => c == '/');
+                });
+            }
+
+            int currPathDepth = sortedDatasets[0].Count((c) => c == '/');
+            List<string> subset = new List<string>();
             foreach (string dataset in sortedDatasets)
             {
-                if (subDatasets.Count <= 0)
+                int pathDepth = dataset.Count((c) => c == '/');
+                if (currPathDepth == pathDepth)
                 {
-                    subDatasets.Add(dataset);
-                    continue;
-                }
-
-                if (dataset.Count((c) => c == '/') == subDatasets.First().Count((c) => c == '/'))
-                {
-                    subDatasets.Add(dataset);
-                    continue;
+                    subset.Add(dataset);
                 }
                 else
                 {
-                    failed.AddRange(RunDatasetJob(subDatasets, callJob));
-                    subDatasets.Clear();
-                    subDatasets.Add(dataset);
+                    failed.AddRange(RunDatasetJob(subset, callJob));
+                    subset.Clear();
+                    subset.Add(dataset);
+                    currPathDepth = pathDepth;
                 }
             }
 
-            failed.AddRange(RunDatasetJob(subDatasets, callJob));
+            failed.AddRange(RunDatasetJob(subset, callJob));
             failed.Sort();
             return failed;
         }
@@ -210,7 +230,7 @@ namespace TrueNASLocker
         private List<string> RunDatasetJob(List<string> datasets, Func<string, object?> callJob)
         {
             List<string> failed = new List<string>();
-            if (!_connected || !_loggedin)
+            if (!_connected || !_loggedin || datasets.Count <= 0)
             {
                 failed.AddRange(datasets);
                 return failed;
@@ -246,7 +266,7 @@ namespace TrueNASLocker
 
         public List<string> LockDataset(List<string> datasets)
         {
-            return RunDatasetJobPostOrder(datasets, (dataset) =>
+            return RunDatasetJob(datasets, JobOrder.ChildrenFirst, (dataset) =>
             {
                 return Task.Run(() => Call("pool.dataset.lock", new List<string> { dataset })).Result;
             });
@@ -254,7 +274,7 @@ namespace TrueNASLocker
 
         public List<string> UnlockDataset(List<string> datasets, string password)
         {
-            return RunDatasetJob(datasets, (dataset) =>
+            return RunDatasetJob(datasets, JobOrder.ParentFirst, (dataset) =>
             {
                 Dictionary<object, object> param = new Dictionary<object, object>
                 {

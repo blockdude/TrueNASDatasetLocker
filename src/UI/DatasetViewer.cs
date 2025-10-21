@@ -233,14 +233,14 @@ namespace TrueNASLocker.UI
             this.Enabled = false;
             if (passwordA != passwordB)
             {
-                MessageBoxEx.Show(this, "Passwords do not match", "Invalid");
+                MessageBoxEx.Show(this, "Passwords do not match", "Invalid Password");
                 this.Enabled = true;
                 return;
             }
 
             if (passwordA.Length < 8)
             {
-                MessageBoxEx.Show(this, "Password must be 8 characters or more", "Invalid");
+                MessageBoxEx.Show(this, "Password must be 8 characters or more", "Invalid Password");
                 this.Enabled = true;
                 return;
             }
@@ -262,7 +262,7 @@ namespace TrueNASLocker.UI
                 return;
 
             this.Enabled = false;
-            DatasetWork("Locked", "Failed to lock dataset for:", (datasets) =>
+            DatasetWork("Locked", "Failed to lock dataset(s)", (datasets) =>
             {
                 return _client.LockDataset(datasets);
             });
@@ -278,7 +278,7 @@ namespace TrueNASLocker.UI
                 return;
 
             this.Enabled = false;
-            DatasetWork("Unlocked", "Failed to unlock dataset for:", (datasets) =>
+            DatasetWork("Unlocked", "Failed to unlock dataset(s)", (datasets) =>
             {
                 return _client.UnlockDataset(datasets, _unlockBox.Password);
             });
