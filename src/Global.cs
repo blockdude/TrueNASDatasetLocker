@@ -4,6 +4,7 @@ namespace TrueNASLocker
 {
     public static class Global
     {
+        // Version is {year}{month}{day}{hour(24)}{minute}
         public static readonly long Version = 202510211117;
         public static readonly string Upstream = "https://api.github.com/repos/blockdude/TrueNASDatasetLocker/releases/latest";
         public static readonly string SettingsPath = "Settings.json";
